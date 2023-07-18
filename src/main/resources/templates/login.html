@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Zaloguj Się</title>
+</head>
+<body>
+<div id="container">
+    <header th:replace="fragments2.html::header">Heder</header>
+    <div id="content">
+        <div class="contentform">
+            <form class="login-form" method="post" th:action="@{/login}">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <p>
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                </p>
+                <p>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                </p>
+                <button  type="submit">Zaloguj się</button>
+            </form>
+            <div class="contentform">
+                <h2>Nie masz jeszcze konta?</h2>
+                <a th:href="@{/register}">Zarejestruj się</a>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{fragments.html::footer}">Stopka</footer>
+
+</div>
+</body>
+</html>

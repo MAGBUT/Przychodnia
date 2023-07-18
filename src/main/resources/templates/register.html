@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head"></head>
+<body>
+<div id="container">
+    <header th:replace="fragments2.html::header">Heder</header>
+
+    <div id ="content">
+        <div class="contentform">
+            <h1>Wbierz kim kim jesteś?</h1>
+            <section id="menu2">
+            <div class="select">
+                <a th:href="@{/registerForPatient}">Pacjentem</a>
+            </div>
+            <div class="select">
+                <a th:href="@{/registerForDoctor}">Specjalista</a>
+            </div>
+            </section>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments.html::footer}">Stopka</footer>
+</div>
+
+
+</body>
+</html>

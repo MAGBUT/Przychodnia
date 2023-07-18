@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Zaloguj Się</title>
+</head>
+<body>
+<div id="container">
+    <header th:replace="fragments.html::header">Heder</header>
+    <div id="content">
+        <div class="contentform">
+            <h1>Zalogowano</h1>
+            <H2>Gratulacje</H2>
+        </div>
+
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
