@@ -3,39 +3,131 @@
 <head th:insert="fragments::head"></head>
 <body>
 <div id="container">
-    <header th:replace="fragments2.html::header">Heder</header>
+    <header th:insert="fragments2.html::header">Heder</header>
 
     <div id ="content">
         <div class="contentform">
             <h1>Zarejestruj się i wybiierz specjlaistę</h1>
-            <form action="#" method="post" th:action="@{/register}" th:object="${user}">
-                <p>
-                <label>
-                    Nazwa użytkownika
-                    <input type="text" placeholder="Jan" th:field="*{userName}">
-                </label>
-                </p>
-                <p th:errors="*{userName}" class="error">Błędy związane z imieniem</p>
-                <p>
-                <label>
-                    Hasło
-                    <input type="password" th:field="*{password}">
-                </label>
-                </p>
-                <p th:errors="*{password}" class="error">Błędne hasło, musi zawieraćminimalnie 8 znaków</p>
-                <p>
-                <label>
-                    Email
-                    <input type="email" placeholder="twoj@email.com" th:field="*{email}">
-                </label>
-                </p>
-                <p th:errors="*{email}" class="error">Błędny adres email</p>
-                <button type="submit">Zarejestruj</button>
+            <form action="#" method="post" th:action="@{/registerForPatient}" th:object="${user}">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Nazwa użytkownika:</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Jan" th:field="*{userName}">
+                        </td>
+                        <td>
+                            <p th:errors="*{userName}" class="error">Błędy związane z imieniem</p>
+                            <p th:if="${wrongUsername}" th:text="${wrongUsername}" class="error">Błędy związane z hasłem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Hasło:</label>
+                        </td>
+                        <td>
+                            <input type="password" th:field="*{password}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">Błędy związane z hasłem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Email:</label>
+                        </td>
+                        <td>
+                            <input type="email" th:field="*{email}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Błędy związane z emailem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Imię:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{name}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Błędy związane z imieniem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Nazwisko:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{surname}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error">Błędy związane z nazwiskiem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Pesel:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{pesel}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}" class="error">Błędy związane z PESEL</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Kraj:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{country}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="error">Błędy</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Miasto:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{city}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error">Błędy</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Kod pocztowy:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{postalCode}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error">Błędy</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Ulica i numer domu:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{address}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error">Błędy</p>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Zarejestruj">
             </form>
         </div>
     </div>
 
-    <footer th:replace="~{fragments.html::footer}">Stopka</footer>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
 </div>
 
 

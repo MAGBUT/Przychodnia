@@ -41,8 +41,12 @@ public class RegisterController {
 
 
     @PostMapping("/registerForPatient")
-    String registerForPatient(@Valid @ModelAttribute("user") PatientDto dto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    String registerForPatient(@Valid @ModelAttribute("user") PatientDto dto, BindingResult bindingResult,Model model) {
+        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
+        if (bindingResult.hasErrors() || userNameIsTake) {
+            if(userNameIsTake){
+                model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
+            }
             return "registerForPatient";
         } else {
             patientRegisterService.register(dto);
@@ -51,8 +55,14 @@ public class RegisterController {
     }
 
     @PostMapping("/registerForDoctor")
-    String registerForDoctor(@Valid @ModelAttribute("user") DoctorDto dto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    String registerForDoctor(@Valid @ModelAttribute("user") DoctorDto dto, BindingResult bindingResult,Model model) {
+        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
+        if (bindingResult.hasErrors() || userNameIsTake) {
+            dto.setSpecialization(doctorRegisterService.getAllSpecializations());
+            model.addAttribute("user", dto);
+            if(userNameIsTake){
+                model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
+            }
             return "registerForDoctor";
         } else {
             doctorRegisterService.register(dto);

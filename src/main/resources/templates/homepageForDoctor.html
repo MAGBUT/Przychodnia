@@ -5,15 +5,15 @@
 </head>
 <body>
 <div id="container">
-    <header th:insert="fragments2.html::header">Heder</header>
+    <header th:insert="fragments4.html::header">Heder</header>
     <div id="content">
         <div class="contentform">
-            <h1>Zarejestrowano</h1>
-            <H2>Gratulacje</H2>
+            <h1>Zalogowano</h1>
+            <H2>Gratulacje Doktorze</H2>
         </div>
 
         <div class="contentform">
-            <a th:href="@{/login}">Zaloguj się</a>
+            <a th:href="@{/logout}">Wyloguj się</a>
         </div>
     </div>
     <footer th:insert="~{fragments.html::footer}">Stopka</footer>

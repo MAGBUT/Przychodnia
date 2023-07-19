@@ -5,7 +5,7 @@
 </head>
 <body>
 <div id="container">
-    <header th:replace="fragments2.html::header">Heder</header>
+    <header th:insert="fragments2.html::header">Heder</header>
     <div id="content">
         <div class="contentform">
             <h1>Zarejestrowano</h1>
@@ -16,6 +16,7 @@
             <a th:href="@{/login}">Zaloguj się</a>
         </div>
     </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
 </div>
 </body>
 </html>

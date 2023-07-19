@@ -51,6 +51,10 @@ public class DoctorRegisterService {
         return userRepository.findByEmail(email) != null;
     }
 
+    public boolean checkUserName(String userName) {
+        return userRepository.findByUserName(userName) != null;
+    }
+
 
 
     public List<String> getAllSpecializations() {

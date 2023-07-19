@@ -5,7 +5,7 @@
 </head>
 <body>
 <div id="container">
-    <header th:replace="fragments2.html::header">Heder</header>
+    <header th:insert="fragments2.html::header">Heder</header>
     <div id="content">
         <div class="contentform">
             <form class="login-form" method="post" th:action="@{/login}">
@@ -18,6 +18,7 @@
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 </p>
+                <p th:if="${wrongUsernameOrPassword}" th:text="${wrongUsernameOrPassword}" class="error">Błędny login lub hasło</p>
                 <button  type="submit">Zaloguj się</button>
             </form>
             <div class="contentform">
@@ -26,7 +27,7 @@
             </div>
         </div>
     </div>
-    <footer th:replace="~{fragments.html::footer}">Stopka</footer>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
 
 </div>
 </body>

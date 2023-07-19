@@ -5,7 +5,7 @@
 </head>
 <body>
 <div id="container">
-    <header th:replace="fragments.html::header">Heder</header>
+    <header th:insert="fragments.html::header">Heder</header>
     <div id="content">
         <h1>Error</h1>
         <b><span th:if="${errorMessage}" th:text="${errorMessage}">Error</span></b>
@@ -14,6 +14,7 @@
             <a th:href="@{/}" class="btn btn-info" role="button">Wróć do strony głównej</a>
         </p>
     </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
 </div>
 </body>
 </html>

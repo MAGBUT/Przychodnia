@@ -3,7 +3,7 @@
 <head th:insert="fragments::head"></head>
 <body>
 <div id="container">
-    <header th:replace="fragments2.html::header">Heder</header>
+    <header th:insert="fragments2.html::header">Heder</header>
 
     <div id ="content">
         <div class="contentform">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <footer th:replace="~{fragments.html::footer}">Stopka</footer>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
 </div>
 
 

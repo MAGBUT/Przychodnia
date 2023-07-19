@@ -3,7 +3,7 @@
 <head th:insert="fragments::head"></head>
 <body>
 <div id="container">
-<header th:replace="fragments.html::header">Heder</header>
+<header th:insert="fragments.html::header">Heder</header>
 
     <div id ="content">
         <div class="contentform">
@@ -46,7 +46,7 @@
 
     </div>
 
-<footer th:replace="~{fragments.html::footer}">Stopka</footer>
+<footer th:insert="~{fragments.html::footer}">Stopka</footer>
 </div>
 <script>
     // Skrypt do przechodzenia do odpowiednich sekcji po kliknięciu w nawigację
