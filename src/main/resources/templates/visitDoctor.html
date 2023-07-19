@@ -8,8 +8,104 @@
     <header th:insert="fragments4.html::header">Heder</header>
     <div id="content">
         <div class="contentform">
-            <h1>Zalogowano</h1>
-            <H2>Gratulacje Doktorze</H2>
+            <h1>Zaplanuj swoją wizytę</h1>
+            <form action="#" method="post" th:action="@{/registerForDoctor}" th:object="${user}">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Wybierz doktora:</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Jan" th:field="*{userName}">
+                        </td>
+                        <td>
+                            <p th:errors="*{userName}" class="error">Błędy związane z imieniem</p>
+                            <p th:if="${wrongUsername}" th:text="${wrongUsername}" class="error">Błędy związane z hasłem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Hasło:</label>
+                        </td>
+                        <td>
+                            <input type="password" th:field="*{password}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">Błędy związane z hasłem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Email:</label>
+                        </td>
+                        <td>
+                            <input type="email" th:field="*{email}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Błędy związane z emailem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Opis:</label>
+                        </td>
+                        <td>
+                            <textarea rows="4" cols="50" th:field="*{description}"></textarea>
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error">Błędy związane z opisem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Specjalizacja:</label>
+                        </td>
+                        <td>
+                            <label th:each="spec : ${user.specialization}">
+                                <input type="checkbox" th:field="*{specialization}" th:value="${spec}" />
+                                <span th:text="${spec}"></span><br>
+                            </label>
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}" class="error">Błędy związane ze specjalizacją</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Imię:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{name}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Błędy związane z imieniem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Nazwisko:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{surname}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error">Błędy związane z nazwiskiem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Pesel:</label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{pesel}">
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}" class="error">Błędy związane z PESEL</p>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Zarejestruj">
+            </form>
         </div>
 
         <div class="contentform">

@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientDto {
+public class PatientRegistrationDto {
 
     @Size(min = 2, max = 100)
     @NotBlank

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Zaloguj Się</title>
+
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments4.html::header">Heder</header>
+    <div id="content">
+        <div class="contentform">
+            <h1>Wszycy lekarze</h1>
+            <div th:if="${doctors}">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Opis</th>
+                </tr>
+
+                <tr th:each="doctor : ${doctors}">
+                    <td th:text="${doctor.name}">Jill</td>
+                    <td th:text="${doctor.surname}">Smith</td>
+                    <td th:text="${doctor.description}">Opis</td>
+                </tr>
+
+            </table>
+        </div>
+            <div th:unless="${doctors}">
+               Brak lekarzy w bazie!
+            </div>
+
+
+    </div>
+
+    <div class="contentform">
+        <a th:href="@{/logout}">Wyloguj się</a>
+    </div>
+</div>
+<footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
+</body>
+</html>

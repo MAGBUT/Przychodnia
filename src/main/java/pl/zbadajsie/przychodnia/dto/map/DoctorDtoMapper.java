@@ -2,7 +2,7 @@ package pl.zbadajsie.przychodnia.dto.map;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.zbadajsie.przychodnia.dto.DoctorDto;
+import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
 import pl.zbadajsie.przychodnia.model.Doctor;
 import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.model.Specialization;
@@ -18,7 +18,7 @@ public class DoctorDtoMapper {
 
     private final SpecializationRepository specializationRepository;
 
-    public Person mapPerson(DoctorDto dto, Doctor doctor) {
+    public Person mapPerson(DoctorRegistrationDto dto, Doctor doctor) {
         return Person.builder()
                 .name(dto.getName())
                 .surname(dto.getSurname())
@@ -27,7 +27,7 @@ public class DoctorDtoMapper {
                 .build();
     }
 
-    public Doctor mapDoctor(DoctorDto dto) {
+    public Doctor mapDoctor(DoctorRegistrationDto dto) {
         return Doctor.builder()
                 .description(dto.getDescription())
                 .specialization(specializationSeter(dto.getSpecialization()))

@@ -7,14 +7,13 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Setter
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorDto {
+public class DoctorRegistrationDto {
 
     @Size(min = 2, max = 100)
     @NotBlank

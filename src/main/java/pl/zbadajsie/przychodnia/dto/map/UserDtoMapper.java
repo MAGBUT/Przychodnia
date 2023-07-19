@@ -3,8 +3,8 @@ package pl.zbadajsie.przychodnia.dto.map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.zbadajsie.przychodnia.dto.DoctorDto;
-import pl.zbadajsie.przychodnia.dto.PatientDto;
+import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
+import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.model.Role;
 import pl.zbadajsie.przychodnia.model.User;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class UserDtoMapper {
     private final PasswordEncoder passwordEncoder;
 
-        public User map(PatientDto dto, Person person){
+        public User map(PatientRegistrationDto dto, Person person){
             return User.builder()
                     .userName(dto.getUserName())
                     .password(passwordEncoder.encode(dto.getPassword()))
@@ -38,7 +38,7 @@ public class UserDtoMapper {
         return roles;
     }
 
-    public User map(DoctorDto dto, Person person){
+    public User map(DoctorRegistrationDto dto, Person person){
         return User.builder()
                 .userName(dto.getUserName())
                 .password(passwordEncoder.encode(dto.getPassword()))

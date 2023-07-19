@@ -19,7 +19,7 @@
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 </p>
                 <p th:if="${wrongUsernameOrPassword}" th:text="${wrongUsernameOrPassword}" class="error">Błędny login lub hasło</p>
-                <button  type="submit">Zaloguj się</button>
+                <input type="submit" value="Zaloguj się">
             </form>
             <div class="contentform">
                 <h2>Nie masz jeszcze konta?</h2>

@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.zbadajsie.przychodnia.dto.DoctorDto;
-import pl.zbadajsie.przychodnia.dto.PatientDto;
+import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
+import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 import pl.zbadajsie.przychodnia.service.DoctorRegisterService;
 import pl.zbadajsie.przychodnia.service.PatientRegisterService;
 
@@ -27,13 +27,13 @@ public class RegisterController {
 
     @GetMapping("/registerForPatient")
     String registerForPatient (Model model){
-        model.addAttribute("user", new PatientDto());
+        model.addAttribute("user", new PatientRegistrationDto());
         return "registerForPatient";
     }
 
     @GetMapping("/registerForDoctor")
     String registerForDoctor (Model model){
-        DoctorDto doctorDto = new DoctorDto();
+        DoctorRegistrationDto doctorDto = new DoctorRegistrationDto();
         doctorDto.setSpecialization(doctorRegisterService.getAllSpecializations());
         model.addAttribute("user", doctorDto);
         return "registerForDoctor";
@@ -41,7 +41,7 @@ public class RegisterController {
 
 
     @PostMapping("/registerForPatient")
-    String registerForPatient(@Valid @ModelAttribute("user") PatientDto dto, BindingResult bindingResult,Model model) {
+    String registerForPatient(@Valid @ModelAttribute("user") PatientRegistrationDto dto, BindingResult bindingResult, Model model) {
         boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
         if (bindingResult.hasErrors() || userNameIsTake) {
             if(userNameIsTake){
@@ -55,7 +55,7 @@ public class RegisterController {
     }
 
     @PostMapping("/registerForDoctor")
-    String registerForDoctor(@Valid @ModelAttribute("user") DoctorDto dto, BindingResult bindingResult,Model model) {
+    String registerForDoctor(@Valid @ModelAttribute("user") DoctorRegistrationDto dto, BindingResult bindingResult, Model model) {
         boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
         if (bindingResult.hasErrors() || userNameIsTake) {
             dto.setSpecialization(doctorRegisterService.getAllSpecializations());

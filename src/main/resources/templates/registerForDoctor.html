@@ -8,6 +8,7 @@
     <div id ="content">
         <div class="contentform">
             <h1>Zarejestruj się specjalisto!</h1>
+            <div id="form">
             <form action="#" method="post" th:action="@{/registerForDoctor}" th:object="${user}">
                 <table>
                     <tr>
@@ -74,7 +75,7 @@
                             <label>Imię:</label>
                         </td>
                         <td>
-                            <input type="text" th:field="*{name}">
+                           <p></p> <input type="text" th:field="*{name}"> </p>
                         </td>
                         <td>
                             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Błędy związane z imieniem</p>
@@ -105,6 +106,7 @@
                 </table>
                 <input type="submit" value="Zarejestruj">
             </form>
+            </div>
         </div>
     </div>
 

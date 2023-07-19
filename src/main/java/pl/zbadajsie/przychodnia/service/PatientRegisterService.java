@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.zbadajsie.przychodnia.dto.PatientDto;
+import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 import pl.zbadajsie.przychodnia.dto.map.PatientDtoMapper;
 import pl.zbadajsie.przychodnia.dto.map.UserDtoMapper;
 import pl.zbadajsie.przychodnia.exceptions.UserAlreadyExistException;
@@ -28,7 +28,7 @@ public class PatientRegisterService {
 
 
     @Transactional
-    public void register (PatientDto dto) {
+    public void register (PatientRegistrationDto dto) {
         if(checkIfUserExist(dto.getEmail())){
             throw new UserAlreadyExistException("Uzytkownik o tym emailu już istnieje");
         }
