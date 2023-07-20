@@ -1,9 +1,10 @@
 CREATE TABLE visit
 (
-    visit_id            INT         NOT NULL AUTO_INCREMENT,
-    visit_data          TIMESTAMP   NOT NULL,
-    note_id             INT         NOT NULL,
-    referral_id         INT         NOT NULL,
+    visit_id            INT             NOT NULL AUTO_INCREMENT,
+    description         VARCHAR(150)    NOT NULL,
+    visit_data          TIMESTAMP       NOT NULL,
+    note_id             INT             NOT NULL,
+    referral_id         INT             NOT NULL,
     prescription_id    INT                 ,
     PRIMARY KEY (visit_id)                  ,
 

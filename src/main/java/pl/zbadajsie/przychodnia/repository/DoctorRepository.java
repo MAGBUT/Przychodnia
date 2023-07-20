@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface DoctorRepository extends CrudRepository<Doctor, Long> {
     List<Doctor> findAll ();
+
+    Doctor findAllById(int id);
 }

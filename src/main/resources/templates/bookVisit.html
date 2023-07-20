@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Zaloguj Się</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments3.html::header">Heder</header>
+    <div id="content">
+        <div class="contentform">
+            <h1>Zaplanuj swoją wizytę</h1>
+            <h2 th:if="${wrongDate}" class="error" th:text="${wrongDate}"></h2>
+            <h2 th:if="${success}" class="success" th:text="${success}"></h2>
+            <form action="#" method="post" th:action="@{/patient/visit}" th:object="${visit}">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="doctor">Wybierz doktora:</label>
+                            <select name="doctor" th:field="*{doctor_id}" id="doctor">
+                                <option th:each="doctor : ${allDoctors}" th:value="${doctor.id}" th:text="${doctor.id + '. ' + doctor.name + ' ' + doctor.surname}">
+                                    Doktor
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <p th:errors="*{doctor_id}" class="error">Błędy</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Opis dolegliwości:</label>
+                        </td>
+                        <td>
+                            <textarea rows="4" cols="50" th:field="*{description}"></textarea>
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error">
+                                Błędy związane z opisem</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Data spotkania:</label>
+                        </td>
+                        <td>
+                            <input type="date" th:field="*{date}">
+                            <input type="time" id="timeInput" th:field="*{time}" step="1800">
+                            <input type="hidden" name="timezoneOffset" th:field="*{timezone}"/>
+                        </td>
+                        <td>
+                            <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="error">
+                                Błędy związane z datą</p>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Zarezerwuj wizytę">
+            </form>
+        </div>
+
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
+<script>
+    const timeInput = document.getElementById('timeInput');
+    timeInput.addEventListener('change', () => {
+        const selectedTime = new Date(timeInput.value);
+        if (selectedTime.getHours() < 8 || selectedTime.getHours() > 16) {
+            timeInput.value = ''; // Czyszczenie wartości, jeśli godzina jest poza zakresem
+        }
+    });
+
+    // Pobierz strefę czasową z przeglądarki i ustaw ją w polu formularza
+    const timezoneOffsetInput = document.getElementsByName('timezoneOffset')[0];
+    const now = new Date();
+    timezoneOffsetInput.value = now.getTimezoneOffset(); // Pobierz przesunięcie czasowe w minutach
+</script>
+
+</body>
+</html>

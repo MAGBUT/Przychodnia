@@ -9,8 +9,6 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDto {
 
     @Size(min = 2,max = 100)

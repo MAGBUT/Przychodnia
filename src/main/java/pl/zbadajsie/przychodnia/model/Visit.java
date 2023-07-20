@@ -26,6 +26,9 @@ public class Visit {
     @ManyToMany(mappedBy = "visit")
     private Set<Person> person;
 
+    @Column(name = "description")
+    private String description;
+
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "note_id")

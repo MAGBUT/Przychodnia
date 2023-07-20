@@ -57,7 +57,9 @@ public class SecurityConfiguration {
                 .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
 
         return http.build();
     }

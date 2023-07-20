@@ -7,7 +7,6 @@ import pl.zbadajsie.przychodnia.model.Address;
 import pl.zbadajsie.przychodnia.model.Person;
 
 @Service
-@RequiredArgsConstructor
 public class PatientDtoMapper {
 
     public Person mapPerson(PatientRegistrationDto dto, Address address) {
