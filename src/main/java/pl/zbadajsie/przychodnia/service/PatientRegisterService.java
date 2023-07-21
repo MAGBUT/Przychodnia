@@ -29,7 +29,7 @@ public class PatientRegisterService {
 
     @Transactional
     public void register (PatientRegistrationDto dto) {
-        if(checkIfUserExist(dto.getEmail())){
+        if(checkEmail(dto.getEmail())){
             throw new UserAlreadyExistException("Uzytkownik o tym emailu już istnieje");
         }
         Address address = patientDtoMapper.mapAddress(dto);
@@ -39,8 +39,12 @@ public class PatientRegisterService {
         User user = userDtoMapper.map(dto,person);
         userRepository.save(user);
     }
-    public boolean checkIfUserExist(String email) {
+    public boolean checkEmail(String email) {
         return userRepository.findByEmail(email) != null;
+    }
+
+    public boolean checkUserName(String userName) {
+        return userRepository.findByUserName(userName) != null;
     }
 }
 

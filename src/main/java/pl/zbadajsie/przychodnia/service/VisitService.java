@@ -16,7 +16,11 @@ import pl.zbadajsie.przychodnia.repository.DoctorRepository;
 import pl.zbadajsie.przychodnia.repository.VisitRepository;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -51,5 +55,22 @@ public class VisitService {
         Doctor doctorFromVisit = getDoctorFromVisit(dto);
         Visit visit = visitDtoMapper.map(dto, person, doctorFromVisit);
         visitRepository.save(visit);
+        Set<Visit> visit2 = doctorFromVisit.getPerson().getVisit();
+        Set<Visit> visit1 = person.getVisit();
+        visit1.add(visit);
+        visit2.add(visit);
+    }
+
+    @Transactional
+    public Optional<List<VisitDto>> getVisit() {
+        Person person = userService.getPerson();
+        Set<Visit> visit = person.getVisit();
+        if(visit.isEmpty()){
+            return Optional.empty();
+        }
+        List<VisitDto> collect = visit.stream()
+                .map(visitDtoMapper::map)
+                .toList();
+        return Optional.of(collect);
     }
 }

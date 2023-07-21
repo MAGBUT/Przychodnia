@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 @Data
@@ -29,7 +32,6 @@ public class Visit {
     @Column(name = "description")
     private String description;
 
-    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "note_id")
     private Note note;
@@ -41,4 +43,12 @@ public class Visit {
     @OneToMany
     @JoinColumn(name = "prescription_id")
     private Set<Prescription> prescriptions;
+
+    public LocalDate getDate(){
+       return dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime(){
+        return dateTime.toLocalTime();
+    }
 }

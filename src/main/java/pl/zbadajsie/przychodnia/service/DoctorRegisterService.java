@@ -34,7 +34,7 @@ public class DoctorRegisterService {
 
     @Transactional
     public void register (DoctorRegistrationDto dto) {
-        if(checkIfUserExist(dto.getEmail())){
+        if(checkEmail(dto.getEmail())){
             throw new UserAlreadyExistException("Uzytkownik o tym emailu już istnieje");
         }
         Doctor doctor = doctorDtoMapper.mapDoctor(dto);
@@ -46,7 +46,7 @@ public class DoctorRegisterService {
         User user = userDtoMapper.map(dto,person);
         userRepository.save(user);
     }
-    public boolean checkIfUserExist(String email) {
+    public boolean checkEmail(String email) {
         return userRepository.findByEmail(email) != null;
     }
 
@@ -62,4 +62,5 @@ public class DoctorRegisterService {
                 .map(Specialization::getName)
                 .collect(Collectors.toList());
     }
+
 }

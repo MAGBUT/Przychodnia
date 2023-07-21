@@ -43,6 +43,7 @@
                         </td>
                         <td>
                             <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Błędy związane z emailem</p>
+                            <p th:if="${wrongEmail}" th:text="${wrongEmail}" class="error">Błędy związane z emailem</p>
                         </td>
                     </tr>
                     <tr>

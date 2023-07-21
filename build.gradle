@@ -31,6 +31,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-web'
+    implementation 'org.springframework.boot:spring-boot-devtools'
     //db
     implementation 'org.flywaydb:flyway-core'
     implementation "org.flywaydb:flyway-mysql"

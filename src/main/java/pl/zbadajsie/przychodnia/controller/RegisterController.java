@@ -26,13 +26,13 @@ public class RegisterController {
     }
 
     @GetMapping("/registerForPatient")
-    String registerForPatient (Model model){
+    String registerForPatient(Model model) {
         model.addAttribute("user", new PatientRegistrationDto());
         return "registerForPatient";
     }
 
     @GetMapping("/registerForDoctor")
-    String registerForDoctor (Model model){
+    String registerForDoctor(Model model) {
         DoctorRegistrationDto doctorDto = new DoctorRegistrationDto();
         doctorDto.setSpecialization(doctorRegisterService.getAllSpecializations());
         model.addAttribute("user", doctorDto);
@@ -42,32 +42,38 @@ public class RegisterController {
 
     @PostMapping("/registerForPatient")
     String registerForPatient(@Valid @ModelAttribute("user") PatientRegistrationDto dto, BindingResult bindingResult, Model model) {
-        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
-        if (bindingResult.hasErrors() || userNameIsTake) {
-            if(userNameIsTake){
-                model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
-            }
+        if (bindingResult.hasErrors()) {
             return "registerForPatient";
-        } else {
-            patientRegisterService.register(dto);
-            return "redirect:success";
         }
+        boolean emailIsTake = patientRegisterService.checkEmail(dto.getEmail());
+        boolean userNameIsTake = patientRegisterService.checkUserName(dto.getUserName());
+        if (userNameIsTake || emailIsTake) {
+            if(userNameIsTake)
+                model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
+            if(emailIsTake)
+                model.addAttribute("wrongEmail", "Użytkownik o takim emailu juz isnieje");
+            return "registerForPatient";
+        }
+        patientRegisterService.register(dto);
+        return "redirect:success";
     }
 
     @PostMapping("/registerForDoctor")
     String registerForDoctor(@Valid @ModelAttribute("user") DoctorRegistrationDto dto, BindingResult bindingResult, Model model) {
-        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
-        if (bindingResult.hasErrors() || userNameIsTake) {
-            dto.setSpecialization(doctorRegisterService.getAllSpecializations());
-            model.addAttribute("user", dto);
-            if(userNameIsTake){
-                model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
-            }
+        if (bindingResult.hasErrors()) {
             return "registerForDoctor";
-        } else {
-            doctorRegisterService.register(dto);
-            return "redirect:success";
         }
+        boolean emailIsTake = doctorRegisterService.checkEmail(dto.getEmail());
+        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
+        if (userNameIsTake || emailIsTake) {
+            if(userNameIsTake)
+              model.addAttribute("wrongUsername", "Użytkownik o takiej nazwie już isnieje");
+            if(emailIsTake)
+                model.addAttribute("wrongEmail", "Użytkownik o takim emailu juz isnieje");
+            return "registerForDoctor";
+        }
+        doctorRegisterService.register(dto);
+        return "redirect:success";
     }
 
     @GetMapping("/success")

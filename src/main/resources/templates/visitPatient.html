@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>O mnie</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments3.html::header">Heder</header>
+    <div id="content">
+        <div th:if="${visitWas}" class="contentform">
+            <h1>Informacje o mnie</h1>
+            <p th:text="${'Imie i nazwisko: ' + person.firstName + ' ' + person.lastName}">Jan Nowak</p>
+            <p th:text="${'Email: ' + person.email}">Email</p>
+            <p th:text="${'Nazwa urzytkownia: ' + person.userName}">Nazwa urzytkownika</p>
+        </div>
+        <div class="contentform">
+            <h1>Moje wizyty</h1>
+            <div th:if="${visits}">
+                <table>
+                    <tr>
+                        <th>Data</th>
+                        <th>Opis</th>
+                        <th>Link</th>
+                    </tr>
+
+                    <tr th:each="visit : ${visits}">
+                        <td th:text="${'Data i gidzina: ' + visit.date + ' ' + visit.time}">12.12.2012 11:00</td>
+                        <td th:text="${visit.description}">Opis</td>
+                        <td><a th:href="@{/patient/visit/{id}(id=${visit.id})}">Przejdz...</a></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div th:unless="${visits}">
+                Brak wizyt!
+            </div>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+        <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+    </div>
+</body>
+</html>

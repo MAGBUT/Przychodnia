@@ -17,4 +17,13 @@ public class VisitDtoMapper {
                 .dateTime(dto.toOffsetDateTime())
                 .build();
     }
+
+    public VisitDto map(Visit visit){
+        return VisitDto.builder()
+                .id(visit.getId())
+                .date(visit.getDate())
+                .time(visit.getTime())
+                .description(visit.getDescription())
+                .build();
+    }
 }
