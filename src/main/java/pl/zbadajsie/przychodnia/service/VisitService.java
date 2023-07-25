@@ -2,7 +2,6 @@ package pl.zbadajsie.przychodnia.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zbadajsie.przychodnia.configuration.security.SecurityContextFacade;
@@ -10,18 +9,13 @@ import pl.zbadajsie.przychodnia.dto.*;
 import pl.zbadajsie.przychodnia.dto.map.*;
 import pl.zbadajsie.przychodnia.model.*;
 import pl.zbadajsie.przychodnia.repository.DoctorRepository;
-import pl.zbadajsie.przychodnia.repository.PrescriptionRepository;
-import pl.zbadajsie.przychodnia.repository.ReferralRepository;
 import pl.zbadajsie.przychodnia.repository.VisitRepository;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -80,6 +74,20 @@ public class VisitService {
     }
 
     @Transactional
+    public Optional<VisitDto> getVisit(Long id) {
+        Person person = userService.getPerson();
+        Set<Visit> visit = person.getVisit();
+        if(visit.isEmpty()){
+            return Optional.empty();
+        }
+        Optional<VisitDto> first = visit.stream()
+                .map(visitDtoMapper::map)
+                .filter(visitDto -> visitDto.getId() == id)
+                .findFirst();
+        return first;
+    }
+
+    @Transactional
     public boolean checkExist(Long id) {
         int id1 = Math.toIntExact(id);
         Set<Visit> visit = userService.getPerson().getVisit();
@@ -109,7 +117,7 @@ public class VisitService {
         return localDate.isAfter(date);
     }
 
-    public Object getNote(Long id) {
+    public NoteDto getNote(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
         Note note = visit.getNote();

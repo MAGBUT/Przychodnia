@@ -77,9 +77,8 @@ public class PatientController {
         }
         DoctorInfoDto doctorInfoDto = visitService.getDoctor(id);
         model.addAttribute("doctor",doctorInfoDto);
-        PatientInfoDto patientInfoDto = patientService.getPatientInfo();
-        model.addAttribute("patient", patientInfoDto);
-
+        Optional<VisitDto> visit = visitService.getVisit(id);
+        visit.ifPresent(visitDto -> model.addAttribute("visit",visitDto));
         if(visitService.visitWas(id)){
             model.addAttribute("note" , visitService.getNote(id));
             Optional<List<ReferralDto>> referralDto = visitService.getReferral(id);
