@@ -3,6 +3,7 @@ package pl.zbadajsie.przychodnia.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,6 +15,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"referrals","note","prescriptions"})
 @Entity
 @Table(name = "visit")
 public class Visit {

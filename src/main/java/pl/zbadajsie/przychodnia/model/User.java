@@ -12,7 +12,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "person")
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"person","roles"})
 @Entity
 @Table(name = "clinic_user")
 public class User {

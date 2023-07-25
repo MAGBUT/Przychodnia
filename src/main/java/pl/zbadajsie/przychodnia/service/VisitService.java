@@ -117,13 +117,14 @@ public class VisitService {
         return localDate.isAfter(date);
     }
 
+    @Transactional
     public NoteDto getNote(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
         Note note = visit.getNote();
         return noteDtoMapper.map(note);
     }
-
+    @Transactional
     public Optional<List<ReferralDto>> getReferral(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
@@ -136,7 +137,7 @@ public class VisitService {
                 .toList();
         return Optional.of(list);
     }
-
+    @Transactional
     public Optional<List<PrescriptionDto>> getPrescription(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();

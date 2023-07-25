@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@ToString(exclude = {"doctor","visit","address"})
+@ToString(exclude = {"doctor","visit","address","user"})
 @Entity
 @Table(name = "person")
 public class Person {

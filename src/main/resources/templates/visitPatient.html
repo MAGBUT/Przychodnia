@@ -21,8 +21,8 @@
             <div th:if="note">
                 <div class="contentform">
                     <h1>Notatka ze spotkania</h1>
-                    <p th:text="${'Tytuł notatki: ' + note.getTitle()}">Tytuł</p>
-                    <p th:text="${'Opis         : ' + note.getDescription()}">Opis</p>
+                    <p th:text="${'Tytuł notatki: ' + note.title}">Tytuł</p>
+                    <p th:text="${'Opis         : ' + note.description}">Opis</p>
                 </div>
                 <div th:if="referral" class="contentform">
                     <h1>Skierownai na badania</h1>
