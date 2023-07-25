@@ -6,21 +6,22 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zbadajsie.przychodnia.configuration.security.SecurityContextFacade;
-import pl.zbadajsie.przychodnia.dto.DoctorInfoDto;
-import pl.zbadajsie.przychodnia.dto.VisitDto;
-import pl.zbadajsie.przychodnia.dto.map.VisitDtoMapper;
-import pl.zbadajsie.przychodnia.model.Doctor;
-import pl.zbadajsie.przychodnia.model.Person;
-import pl.zbadajsie.przychodnia.model.Visit;
+import pl.zbadajsie.przychodnia.dto.*;
+import pl.zbadajsie.przychodnia.dto.map.*;
+import pl.zbadajsie.przychodnia.model.*;
 import pl.zbadajsie.przychodnia.repository.DoctorRepository;
+import pl.zbadajsie.przychodnia.repository.PrescriptionRepository;
+import pl.zbadajsie.przychodnia.repository.ReferralRepository;
 import pl.zbadajsie.przychodnia.repository.VisitRepository;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,6 +32,10 @@ public class VisitService {
     private final VisitDtoMapper visitDtoMapper;
     private final SecurityContextFacade securityContextFacade;
     private final UserService userService;
+    private final DoctorInfoDtoMapper doctorInfoDtoMapper;
+    private final NoteDtoMapper noteDtoMapper;
+    private final ReferralDtoMapper referralDtoMapper;
+    private final PrescriptionDtoMapper prescriptionDtoMapper;
 
     @Transactional
     public boolean freeDateTme(VisitDto dto) {
@@ -82,5 +87,58 @@ public class VisitService {
                 .filter(visit1 -> visit1.getId() == id1)
                 .toList();
         return !list.isEmpty();
+    }
+
+    @Transactional
+    public DoctorInfoDto getDoctor(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Set<Person> person = visit.getPerson();
+        Optional<Person> doctor = person.stream()
+                .filter(person1 -> person1.getDoctor() != null)
+                .findFirst();
+        return doctorInfoDtoMapper.mapDoctorInfo(doctor.get().getDoctor());
+    }
+
+    @Transactional
+    public boolean visitWas(Long id) {
+        LocalDate localDate = LocalDate.now();
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        LocalDate date = visit.getDate();
+        return localDate.isAfter(date);
+    }
+
+    public Object getNote(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Note note = visit.getNote();
+        return noteDtoMapper.map(note);
+    }
+
+    public Optional<List<ReferralDto>> getReferral(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Set<Referral> referrals = visit.getReferrals();
+        if(referrals.isEmpty()){
+            return Optional.empty();
+        }
+        List<ReferralDto> list = referrals.stream()
+                .map(referralDtoMapper::map)
+                .toList();
+        return Optional.of(list);
+    }
+
+    public Optional<List<PrescriptionDto>> getPrescription(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Set<Prescription> prescriptions = visit.getPrescriptions();
+        if(prescriptions.isEmpty()){
+            return Optional.empty();
+        }
+        List<PrescriptionDto> list = prescriptions.stream()
+                .map(prescriptionDtoMapper::map)
+                .toList();
+        return Optional.of(list);
     }
 }
