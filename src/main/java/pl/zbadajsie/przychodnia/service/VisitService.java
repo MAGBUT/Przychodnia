@@ -73,4 +73,14 @@ public class VisitService {
                 .toList();
         return Optional.of(collect);
     }
+
+    @Transactional
+    public boolean checkExist(Long id) {
+        int id1 = Math.toIntExact(id);
+        Set<Visit> visit = userService.getPerson().getVisit();
+        List<Visit> list = visit.stream()
+                .filter(visit1 -> visit1.getId() == id1)
+                .toList();
+        return !list.isEmpty();
+    }
 }

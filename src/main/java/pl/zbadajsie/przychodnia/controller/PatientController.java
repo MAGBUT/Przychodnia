@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.zbadajsie.przychodnia.dto.DoctorInfoDto;
-import pl.zbadajsie.przychodnia.dto.PatientInfoDto;
-import pl.zbadajsie.przychodnia.dto.VisitDto;
+import pl.zbadajsie.przychodnia.dto.*;
+import pl.zbadajsie.przychodnia.model.Doctor;
 import pl.zbadajsie.przychodnia.service.PatientService;
+import pl.zbadajsie.przychodnia.service.UserService;
 import pl.zbadajsie.przychodnia.service.VisitService;
 
 import java.util.List;
@@ -21,6 +21,7 @@ import java.util.Optional;
 public class PatientController {
     private final PatientService patientService;
     private final VisitService visitService;
+    private final UserService userService;
 
     @GetMapping("/about")
     public String aboutMe(Model model){
@@ -68,6 +69,25 @@ public class PatientController {
 
     }
 
+    @PostMapping("visit/{id}")
+    public String getInfoVisit(@PathVariable Long id, Model model){
+        if(!visitService.checkExist(id)){
+            model.addAttribute("notExist", "Wizyta o id: " + id + " nie istnieje dla pacjenta " + userService.getPerson().getUser() );
+            return "visitPatient";
+        }
+        DoctorInfoDto doctorInfoDto = visitService.getDoctor(id);
+        model.addAttribute("doctor",doctorInfoDto);
+        PatientInfoDto patientInfoDto = patientService.getPatientInfo();
+        model.addAttribute("patient", patientInfoDto);
 
+        if(visitService.visitWas(id)){
+            model.addAttribute("note" , visitService.getNote(id));
+            Optional<List<ReferralDto>> referralDto = visitService.getReferral(id);
+            referralDto.ifPresent(referralDto2 -> model.addAttribute("referral",referralDto2));
+            Optional<List<PrescriptionDto>> prescriptionDto = visitService.getPrescription(id);
+            prescriptionDto.ifPresent(prescriptionDto2 -> model.addAttribute("prescription",prescriptionDto2));
+        }
+        return "visitPatient";
+    }
 
 }
