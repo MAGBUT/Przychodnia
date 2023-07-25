@@ -32,8 +32,8 @@
                             <th>Opis</th>
                         </tr>
                         <tr th:each="ref : ${referral}">
-                            <td th:text="${'Tytuł: ' + ref.title}">tytuł</td>
-                            <td th:text="${'Tytuł: ' + ref.description}">Opis</td>
+                            <td th:text="${ref.title}">tytuł</td>
+                            <td th:text="${ref.description}">Opis</td>
                         </tr>
                     </table>
                 </div>
@@ -45,8 +45,8 @@
                             <th>Opis</th>
                         </tr>
                         <tr th:each="pre : ${prescription}">
-                            <td th:text="${'Tytuł: ' + pre.name}">tytuł</td>
-                            <td th:text="${'Tytuł: ' + pre.description}">Opis</td>
+                            <td th:text="${pre.name}">tytuł</td>
+                            <td th:text="${pre.description}">Opis</td>
                         </tr>
                     </table>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div th:unless="${note}" class="contentform">
-                <h2>Ta wizyta jeszcze sienie odbyła</h2>
+                <h2>Ta wizyta jeszcze się nie odbyła</h2>
             </div>
 
         </div>

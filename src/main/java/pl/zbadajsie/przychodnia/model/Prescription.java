@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString(exclude = "visit")
 @Entity
 @Table(name = "prescription")
 public class Prescription {
@@ -26,4 +27,8 @@ public class Prescription {
     @NotNull
     @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "visit_id")
+    private Visit visit;
 }

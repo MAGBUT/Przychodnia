@@ -39,12 +39,10 @@ public class Visit {
     @JoinColumn(name = "note_id")
     private Note note;
 
-    @OneToMany
-    @JoinColumn(name = "referral_id")
+    @OneToMany(mappedBy = "visit",fetch =FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Referral> referrals;
 
-    @OneToMany
-    @JoinColumn(name = "prescription_id")
+    @OneToMany(mappedBy = "visit",fetch =FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Prescription> prescriptions;
 
     public LocalDate getDate(){

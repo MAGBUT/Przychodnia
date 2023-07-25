@@ -1,9 +1,6 @@
 package pl.zbadajsie.przychodnia.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -12,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = "visit")
 @EqualsAndHashCode(of = "id")
 @Table(name = "referral")
 public class Referral {
@@ -27,5 +25,9 @@ public class Referral {
     @NotNull
     @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "visit_id")
+    private Visit visit;
 
 }
