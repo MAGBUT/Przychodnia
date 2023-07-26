@@ -11,7 +11,6 @@ import pl.zbadajsie.przychodnia.dto.map.VisitDoctorDtoMapper;
 import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.model.User;
 import pl.zbadajsie.przychodnia.model.Visit;
-import pl.zbadajsie.przychodnia.repository.PersonRepository;
 import pl.zbadajsie.przychodnia.repository.UserRepository;
 import pl.zbadajsie.przychodnia.repository.VisitRepository;
 
@@ -58,10 +57,8 @@ public class DoctorService {
         }
         List<Person> persons = new ArrayList<>();
         for (Visit visit1 : visit) {
-            Optional<Person> first = visit1.getPerson().stream()
-                    .filter(person -> person.getDoctor() == null)
-                    .findFirst();
-            first.ifPresent(persons::add);
+            Person first = getPatientFromVisit(visit1.getPerson());
+            persons.add(first);
         }
         List<PatientInfoDto> list = persons.stream()
                 .map(person -> patientDtoMapper.map(person, person.getUser()))
@@ -72,21 +69,47 @@ public class DoctorService {
 
     @Transactional
     public Optional<List<VisitDoctorDto>> getUserVisit(String userName) {
-        int id_doctor = userService.getPerson().getId();
+        Person doctor = userService.getPerson();
         Optional<User> userByUserName = userRepository.findUserByUserName(userName);
         if(userByUserName.isEmpty()){
             return Optional.empty();
         }
-        int id_patient = userByUserName.get().getPerson().getId();
-        List<Integer> ids = Arrays.asList(id_doctor,id_patient);
-        Optional<List<Visit>> visits = visitRepository.findByPersonIdIn(ids);
-        if(visits.isEmpty()){
+        Person patient = userByUserName.get().getPerson();
+        Set<Visit> visitPatient = patient.getVisit();
+        if(visitPatient.isEmpty()){
             return Optional.empty();
         }
-        Person person = userByUserName.get().getPerson();
-        List<VisitDoctorDto> visitDto = visits.get().stream()
-                .map(visit -> visitDoctorDtoMapper.map(visit, person))
+        List<VisitDoctorDto> visitDto = visitPatient.stream()
+                .filter(visit -> checkVisitDoctor(visit, doctor))
+                .map(visit -> visitDoctorDtoMapper.map(visit, patient))
                 .toList();
+
         return Optional.of(visitDto);
+    }
+
+    private boolean checkVisitDoctor(Visit visit, Person doctor) {
+        Set<Person> person = visit.getPerson();
+        long count = person.stream()
+                .filter(person1 -> person1.equals(doctor))
+                .count();
+        return count > 0;
+    }
+
+    public Optional<VisitDoctorDto> getVisitById(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        if(byId.isEmpty()){
+            return Optional.empty();
+        }
+        Visit visit = byId.get();
+        Set<Person> personOnVisit = visit.getPerson();
+        Person patient = getPatientFromVisit(personOnVisit);
+        return Optional.of(visitDoctorDtoMapper.map(visit,patient));
+    }
+
+    private Person getPatientFromVisit(Set<Person> person) {
+        Optional<Person> first = person.stream()
+                .filter(person1 -> person1.getDoctor() == null)
+                .findFirst();
+        return first.get();
     }
 }

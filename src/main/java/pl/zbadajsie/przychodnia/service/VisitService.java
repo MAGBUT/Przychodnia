@@ -109,11 +109,10 @@ public class VisitService {
 
     @Transactional
     public boolean visitWas(Long id) {
-        LocalDate localDate = LocalDate.now();
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
-        LocalDate date = visit.getDate();
-        return localDate.isAfter(date);
+        Note note = visit.getNote();
+        return note != null;
     }
 
     @Transactional

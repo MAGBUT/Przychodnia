@@ -47,10 +47,8 @@ public class DoctorController {
             model.addAttribute("notExist", "Wizyta o id: " + id + " nie istnieje dla tego doktora ");
             return "visitPatient";
         }
-        DoctorInfoDto doctorInfoDto = visitService.getDoctor(id);
-        model.addAttribute("doctor",doctorInfoDto);
-        Optional<VisitDto> visit = visitService.getVisit(id);
-        visit.ifPresent(visitDto -> model.addAttribute("visit",visitDto));
+        Optional<VisitDoctorDto> visitDoctorDto = doctorService.getVisitById(id);
+        visitDoctorDto.ifPresent(visit->model.addAttribute("visit",visit));
         if(visitService.visitWas(id)){
             model.addAttribute("note" , visitService.getNote(id));
             Optional<List<ReferralDto>> referralDto = visitService.getReferral(id);

@@ -14,9 +14,9 @@
         <div th:unless="${notExist}">
             <div class="contentform">
                 <h1>Podstawowe informacje o Wizycie</h1>
-                <p th:text="${'Imie i nazwisko Doktora :' + doctor.getName() +' '+ doctor.getSurname()}">Jacek Klata</p>
-                <p th:text="${'Data spotkania: ' + visit.getDate() + ' ' + visit.getTime() }">Data</p>
-                <p th:text="${'Opis przesłany przez pacjenta: ' + visit.getDescription()}">Opis</p>
+                <p th:text="${'Imie i nazwisko Pacjenta :' + visit.patientFirstName +' '+ visit.patientLastName}">Jacek Klata</p>
+                <p th:text="${'Data spotkania: ' + visit.date + ' ' + visit.time }">Data</p>
+                <p th:text="${'Opis przesłany przez pacjenta: ' + visit.description}">Opis</p>
             </div>
             <div th:if="${note}">
                 <div class="contentform">
