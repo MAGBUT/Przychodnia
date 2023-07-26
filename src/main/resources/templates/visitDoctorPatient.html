@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Wizyty pacjenta</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments4.html::header">Heder</header>
+    <div id="content">
+
+        <div class="contentform">
+            <h1 >Wizyty pacjenta</h1>
+            <div th:if="${visits}">
+                <table>
+                    <tr>
+                        <th>Opis pacjenta</th>
+                        <th>Data wizyty</th>
+                        <th>Link</th>
+                    </tr>
+
+                    <tr th:each="visit : ${visits}">
+                        <td th:text="${visit.description}">Opis pacjenta</td>
+                        <td th:text="${visit.date + ' ' + visit.time}">Data</td>
+                        <td><a th:href="@{/doctor/visit/{id}(id=${visit.id})}">Wizyty pacjenta</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div th:unless="${visits}">
+                Brak takiego pacjenta!
+            </div>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+        <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>Szcegóły wizyty</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments4.html::header">Heder</header>
+    <div id="content">
+        <div th:if="${notExist}" class="contentform">
+            <h1>ERROR</h1>
+            <p th:text="${notExist}">Błąd</p>
+        </div>
+        <div th:unless="${notExist}">
+            <div class="contentform">
+                <h1>Podstawowe informacje o Wizycie</h1>
+                <p th:text="${'Imie i nazwisko Doktora :' + doctor.getName() +' '+ doctor.getSurname()}">Jacek Klata</p>
+                <p th:text="${'Data spotkania: ' + visit.getDate() + ' ' + visit.getTime() }">Data</p>
+                <p th:text="${'Opis przesłany przez pacjenta: ' + visit.getDescription()}">Opis</p>
+            </div>
+            <div th:if="${note}">
+                <div class="contentform">
+                    <h1>Notatka ze spotkania</h1>
+                    <p th:text="${'Tytuł notatki: ' + note.title}">Tytuł</p>
+                    <p th:text="${'Opis         : ' + note.description}">Opis</p>
+                </div>
+                <div th:if="${referral}" class="contentform">
+                    <h1>Skierownai na badania</h1>
+                    <table>
+                        <tr>
+                            <th>Tytuł</th>
+                            <th>Opis</th>
+                        </tr>
+                        <tr th:each="ref : ${referral}">
+                            <td th:text="${ref.title}">tytuł</td>
+                            <td th:text="${ref.description}">Opis</td>
+                        </tr>
+                    </table>
+                </div>
+                <div th:if="${prescription}" class="contentform">
+                    <h1>Recepta na leki</h1>
+                    <table>
+                        <tr>
+                            <th>Tytuł</th>
+                            <th>Opis</th>
+                        </tr>
+                        <tr th:each="pre : ${prescription}">
+                            <td th:text="${pre.name}">tytuł</td>
+                            <td th:text="${pre.description}">Opis</td>
+                        </tr>
+                    </table>
+                </div>
+                <div th:unless="${prescription}" class="contentform">
+                    <h1>Brak recept</h1>
+                </div>
+            </div>
+            <div th:unless="${note}" class="contentform">
+                <h2>Ta wizyta jeszcze się nie odbyła</h2>
+            </div>
+
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+        <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+    </div>
+</body>
+</html>

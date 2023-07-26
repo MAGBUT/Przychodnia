@@ -72,7 +72,7 @@ public class PatientController {
     @GetMapping("visit/{id}")
     public String getInfoVisit(@PathVariable Long id, Model model){
         if(!visitService.checkExist(id)){
-            model.addAttribute("notExist", "Wizyta o id: " + id + " nie istnieje dla pacjenta " + userService.getPerson().getUser().getUserName() );
+            model.addAttribute("notExist", "Wizyta o id: " + id + " nie istnieje dla tego pacjenta");
             return "visitPatient";
         }
         DoctorInfoDto doctorInfoDto = visitService.getDoctor(id);

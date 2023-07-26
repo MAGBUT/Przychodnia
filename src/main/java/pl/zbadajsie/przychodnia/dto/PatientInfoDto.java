@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Builder
 @AllArgsConstructor
+@EqualsAndHashCode(of = {"email"})
 @NoArgsConstructor
 public class PatientInfoDto {
     private String firstName;
