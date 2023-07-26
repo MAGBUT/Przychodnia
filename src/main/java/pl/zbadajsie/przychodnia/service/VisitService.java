@@ -80,11 +80,10 @@ public class VisitService {
         if(visit.isEmpty()){
             return Optional.empty();
         }
-        Optional<VisitDto> first = visit.stream()
+        return visit.stream()
                 .map(visitDtoMapper::map)
                 .filter(visitDto -> visitDto.getId() == id)
                 .findFirst();
-        return first;
     }
 
     @Transactional
@@ -150,4 +149,5 @@ public class VisitService {
                 .toList();
         return Optional.of(list);
     }
+
 }

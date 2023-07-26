@@ -15,6 +15,7 @@ public class VisitDtoMapper {
                 .person(Set.of(person, doctor.getPerson()))
                 .description(dto.getDescription())
                 .dateTime(dto.toOffsetDateTime())
+                .accept(false)
                 .build();
     }
 

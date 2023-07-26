@@ -35,6 +35,9 @@ public class Visit {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "accept")
+    private Boolean accept;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "note_id")
     private Note note;
