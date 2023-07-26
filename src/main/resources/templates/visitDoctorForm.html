@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:insert="fragments::head">
+    <title>Szcegóły wizyty</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments4.html::header">Heder</header>
+    <div id="content">
+        <div th:if="${notExist}" class="contentform">
+            <h1>ERROR</h1>
+            <p th:text="${notExist}">Błąd</p>
+        </div>
+        <div th:unless="${notExist}">
+            <div class="contentform">
+                <h1>Wizyta Pacjenta, prosze uzupełnić informacje</h1>
+                <table>
+                    <tr>
+                        <td>
+                            <p>Imie i nazwisko Pacjenta:</p>
+                        </td>
+                        <td>
+                            <p th:text="${visit.patientFirstName +' '+ visit.patientLastName}">Jacek
+                                Klata</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Data spotkania:</p>
+                        </td>
+                        <td>
+                            <p th:text="${visit.date + ' ' + visit.time }">Data</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Opis pacjenta:</p>
+                        </td>
+                        <td>
+                            <p th:text="${visit.description}">Opis</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${visit.isAccept()}">
+                <div th:unless="${visitInfo.noteDto}" class="contentform">
+                    <form action="#" method="post" th:action="@{/doctor/{id}/info(id=${visit.id})}"
+                          th:object="${visitInfo}">
+                        <h1>Notatka ze spotkania</h1>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="title">Tytuł notatki:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="title" placeholder="Tytuł" th:field="*{noteDto.title}">
+                                </td>
+                                <td>
+                                    <input type="hidden" th:field="*{noteDto.id}" th:value="${visit.id}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="noteDescription">Informacje ze spotkania:</label>
+                                </td>
+                                <td>
+                                    <textarea id="noteDescription" rows="4" cols="50"
+                                              th:field="*{noteDto.description}"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div th:unless="${visit.isAccept()}" class="contentform">
+                <h1>Zakceptuj wizytę:</h1>
+                <form method="post" th:action="@{/doctor/accept}" th:object="${visit}">
+                    <input type="hidden" th:field="*{id}" th:value="${visit.id}"/>
+                    <input type="submit" value="Zatwierdz wizytę">
+                </form>
+            </div>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
+</body>
+</html>

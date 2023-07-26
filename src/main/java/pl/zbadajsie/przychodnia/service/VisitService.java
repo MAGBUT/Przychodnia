@@ -11,7 +11,6 @@ import pl.zbadajsie.przychodnia.model.*;
 import pl.zbadajsie.przychodnia.repository.DoctorRepository;
 import pl.zbadajsie.przychodnia.repository.VisitRepository;
 
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -24,12 +23,12 @@ public class VisitService {
     private final VisitRepository visitRepository;
     private final DoctorRepository doctorRepository;
     private final VisitDtoMapper visitDtoMapper;
-    private final SecurityContextFacade securityContextFacade;
     private final UserService userService;
     private final DoctorInfoDtoMapper doctorInfoDtoMapper;
     private final NoteDtoMapper noteDtoMapper;
     private final ReferralDtoMapper referralDtoMapper;
     private final PrescriptionDtoMapper prescriptionDtoMapper;
+    private final InfoFromVisitDtoMapper infoFromVisitDtoMapper;
 
     @Transactional
     public boolean freeDateTme(VisitDto dto) {
@@ -64,7 +63,7 @@ public class VisitService {
     public Optional<List<VisitDto>> getVisit() {
         Person person = userService.getPerson();
         Set<Visit> visit = person.getVisit();
-        if(visit.isEmpty()){
+        if (visit.isEmpty()) {
             return Optional.empty();
         }
         List<VisitDto> collect = visit.stream()
@@ -77,7 +76,7 @@ public class VisitService {
     public Optional<VisitDto> getVisit(Long id) {
         Person person = userService.getPerson();
         Set<Visit> visit = person.getVisit();
-        if(visit.isEmpty()){
+        if (visit.isEmpty()) {
             return Optional.empty();
         }
         return visit.stream()
@@ -122,12 +121,13 @@ public class VisitService {
         Note note = visit.getNote();
         return noteDtoMapper.map(note);
     }
+
     @Transactional
     public Optional<List<ReferralDto>> getReferral(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
         Set<Referral> referrals = visit.getReferrals();
-        if(referrals.isEmpty()){
+        if (referrals.isEmpty()) {
             return Optional.empty();
         }
         List<ReferralDto> list = referrals.stream()
@@ -135,12 +135,13 @@ public class VisitService {
                 .toList();
         return Optional.of(list);
     }
+
     @Transactional
     public Optional<List<PrescriptionDto>> getPrescription(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         Visit visit = byId.get();
         Set<Prescription> prescriptions = visit.getPrescriptions();
-        if(prescriptions.isEmpty()){
+        if (prescriptions.isEmpty()) {
             return Optional.empty();
         }
         List<PrescriptionDto> list = prescriptions.stream()
@@ -149,4 +150,25 @@ public class VisitService {
         return Optional.of(list);
     }
 
+    @Transactional
+    public Optional<InfoFromVisitDto> getInfoFromVisit(Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        if (byId.isEmpty()) {
+            return Optional.of(new InfoFromVisitDto());
+        }
+        Note note = byId.get().getNote();
+        if (note == null) {
+            return Optional.of(new InfoFromVisitDto());
+        }
+        NoteDto noteDto = noteDtoMapper.map(note);
+        InfoFromVisitDto infoFromVisitDto = infoFromVisitDtoMapper.mapOnlyNote(noteDto);
+        return Optional.of(infoFromVisitDto);
+    }
+
+    @Transactional
+    public void accept(VisitDoctorDto dto) {
+        Optional<Visit> byId = visitRepository.findById((long) dto.getId());
+        Visit visit = byId.get();
+        visit.setAccept(true);
+    }
 }
