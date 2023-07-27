@@ -12,4 +12,11 @@ public class NoteDtoMapper {
                 .description(note.getNoteDescription())
                 .build();
     }
+
+    public Note map(NoteDto noteDto){
+        return Note.builder()
+                .noteTitle(noteDto.getTitle())
+                .noteDescription(noteDto.getDescription())
+                .build();
+    }
 }

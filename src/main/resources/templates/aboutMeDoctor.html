@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head">
+    <title>O mnie</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments3.html::header">Heder</header>
+    <div id="content">
+        <div class="contentform">
+            <h1>Informacje o mnie</h1>
+            <p th:text="${'Imie i nazwisko: ' + person.firstName + ' ' + person.lastName}">Jan Nowak</p>
+            <p th:text="${'Email: ' + person.email}">Email</p>
+            <p th:text="${'Nazwa urzytkownia: ' + person.userName}">Nazwa urzytkownika</p>
+        </div>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+        <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+    </div>
+</body>
+</html>

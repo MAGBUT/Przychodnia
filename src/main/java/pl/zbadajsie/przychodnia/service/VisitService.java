@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.zbadajsie.przychodnia.configuration.security.SecurityContextFacade;
 import pl.zbadajsie.przychodnia.dto.*;
 import pl.zbadajsie.przychodnia.dto.map.*;
 import pl.zbadajsie.przychodnia.model.*;
@@ -151,18 +150,17 @@ public class VisitService {
     }
 
     @Transactional
-    public Optional<InfoFromVisitDto> getInfoFromVisit(Long id) {
+    public Optional<NoteDto> getNoteFromVisit(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         if (byId.isEmpty()) {
-            return Optional.of(new InfoFromVisitDto());
+            return Optional.of(new NoteDto());
         }
         Note note = byId.get().getNote();
         if (note == null) {
-            return Optional.of(new InfoFromVisitDto());
+            return Optional.of(new NoteDto());
         }
         NoteDto noteDto = noteDtoMapper.map(note);
-        InfoFromVisitDto infoFromVisitDto = infoFromVisitDtoMapper.mapOnlyNote(noteDto);
-        return Optional.of(infoFromVisitDto);
+        return Optional.of(noteDto);
     }
 
     @Transactional
@@ -170,5 +168,27 @@ public class VisitService {
         Optional<Visit> byId = visitRepository.findById((long) dto.getId());
         Visit visit = byId.get();
         visit.setAccept(true);
+    }
+
+    @Transactional
+    public void addNote(NoteDto noteDto, Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        byId.ifPresent(visit -> visit.setNote(noteDtoMapper.map(noteDto)));
+    }
+
+    @Transactional
+    public void addReferral(ReferralDto dto, Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Set<Referral> referrals = visit.getReferrals();
+        referrals.add(referralDtoMapper.map(dto,visit));
+    }
+
+    @Transactional
+    public void addPrescription(PrescriptionDto dto, Long id) {
+        Optional<Visit> byId = visitRepository.findById(id);
+        Visit visit = byId.get();
+        Set<Prescription> prescriptions = visit.getPrescriptions();
+        prescriptions.add(prescriptionDtoMapper.map(dto,visit));
     }
 }

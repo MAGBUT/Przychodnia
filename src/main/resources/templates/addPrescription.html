@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:insert="fragments::head">
+    <title>Szcegóły wizyty</title>
+</head>
+<body>
+<div id="container">
+    <header th:insert="fragments4.html::header">Heder</header>
+    <div id="content">
+        <div th:if="${notExist}" class="contentform">
+            <h1>ERROR</h1>
+            <p th:text="${notExist}">Błąd</p>
+        </div>
+        <div th:unless="${notExist}">
+            <div class="contentform">
+                <h1>Dodaj receptę</h1>
+                <div th:if="${added}">
+                    <h2>Dodano receptę pomyślnie, dodaj kolejną:</h2>
+                </div>
+                <form action="#" method="post" th:action="@{/doctor/prescription/{id}(id=${prescription.id})}"
+                      th:object="${prescription}">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="title">Tytuł recepty:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="title" th:field="*{name}">
+                            </td>
+                            <td>
+                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Błędy</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="noteDescription">Opis recepty:</label>
+                            </td>
+                            <td>
+                                    <textarea id="noteDescription" rows="4" cols="50"
+                                              th:field="*{description}"></textarea>
+                            </td>
+                            <td>
+                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error">
+                                    Błędy</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Zatwierdz receptę">
+                </form>
+            </div>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/doctor/visit/{id}/info(id=${prescription.id})}">Wróć do wizyty</a>
+        </div>
+        <div class="contentform">
+            <a th:href="@{/logout}">Wyloguj się</a>
+        </div>
+    </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
+</body>
+</html>

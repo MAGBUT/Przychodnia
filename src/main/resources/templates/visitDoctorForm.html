@@ -43,9 +43,28 @@
                 </table>
             </div>
             <div th:if="${visit.isAccept()}">
-                <div th:unless="${visitInfo.noteDto}" class="contentform">
-                    <form action="#" method="post" th:action="@{/doctor/{id}/info(id=${visit.id})}"
-                          th:object="${visitInfo}">
+                <div th:if="${noteInfo.id}">
+                    <div class="contentform">
+                        <h1>Notatka ze spotkania</h1>
+                        <table>
+                            <tr>
+                                <th>
+                                    Tytuł notatki:
+                                </th>
+                                <th>
+                                    Opis sptkania:
+                                </th>
+                            </tr>
+                            <tr>
+                                <td th:text="${noteInfo.title}">Tytuł</td>
+                                <td th:text="${noteInfo.description}">Opis</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div th:unless="${noteInfo.id}" class="contentform">
+                    <form action="#" method="post" th:action="@{/doctor/visit/{id}/info(id=${visit.id})}"
+                          th:object="${noteInfo}">
                         <h1>Notatka ze spotkania</h1>
                         <table>
                             <tr>
@@ -53,10 +72,13 @@
                                     <label for="title">Tytuł notatki:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="title" placeholder="Tytuł" th:field="*{noteDto.title}">
+                                    <input type="text" id="title" th:field="*{title}">
                                 </td>
                                 <td>
-                                    <input type="hidden" th:field="*{noteDto.id}" th:value="${visit.id}">
+                                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error">Błędy</p>
+                                </td>
+                                <td>
+                                    <input type="hidden" th:field="*{id}" th:value="${visit.id}">
                                 </td>
                             </tr>
                             <tr>
@@ -65,11 +87,35 @@
                                 </td>
                                 <td>
                                     <textarea id="noteDescription" rows="4" cols="50"
-                                              th:field="*{noteDto.description}"></textarea>
+                                              th:field="*{description}"></textarea>
+                                </td>
+                                <td>
+                                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error">Błędy</p>
                                 </td>
                             </tr>
                         </table>
+                        <input type="submit" value="Zatwierdz notatkę">
                     </form>
+                </div>
+                <div class="contentform">
+                    <table>
+                        <tr>
+                            <td>
+                                Dodaj skierowanie:
+                            </td>
+                            <td>
+                                <a th:href="@{/doctor/referral/{id}(id=${visit.id})}">kliknij tutaj</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Dodaj receptę:
+                            </td>
+                            <td>
+                                <a th:href="@{/doctor/prescription/{id}(id=${visit.id})}">kliknij tutaj</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div th:unless="${visit.isAccept()}" class="contentform">
