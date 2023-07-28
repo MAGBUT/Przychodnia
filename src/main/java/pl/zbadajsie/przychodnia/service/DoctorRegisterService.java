@@ -34,9 +34,6 @@ public class DoctorRegisterService {
 
     @Transactional
     public void register (DoctorRegistrationDto dto) {
-        if(checkEmail(dto.getEmail())){
-            throw new UserAlreadyExistException("Uzytkownik o tym emailu już istnieje");
-        }
         Doctor doctor = doctorDtoMapper.mapDoctor(dto);
         doctorRepository.save(doctor);
         Person person = doctorDtoMapper.mapPerson(dto,doctor);

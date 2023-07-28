@@ -1,1 +1,4 @@
 rootProject.name = 'przychodnia'
+include 'src:test:java.pl.zbadajsie'
+findProject(':src:test:java.pl.zbadajsie')?.name = 'java.pl.zbadajsie'
+

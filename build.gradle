@@ -22,7 +22,9 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+
     // spring
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -63,6 +65,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mysql'
+    testImplementation 'org.mockito:mockito-core:3.11.0'
 
     // Integration tests
     // Ta zależność musi być przed wiremock standalone
@@ -111,5 +114,6 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+
 
 compileJava.options.encoding = 'UTF-8'

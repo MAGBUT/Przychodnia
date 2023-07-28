@@ -1,6 +1,4 @@
-api:
-  cepik:
-    url: http://localhost:9999
+
 
 spring:
   jpa:

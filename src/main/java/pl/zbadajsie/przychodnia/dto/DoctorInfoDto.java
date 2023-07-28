@@ -10,7 +10,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class DoctorInfoDto {
     private int id;
     private String name;

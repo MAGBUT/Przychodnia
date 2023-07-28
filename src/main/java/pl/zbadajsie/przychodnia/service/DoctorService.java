@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.zbadajsie.przychodnia.dto.DoctorFullInfoDto;
 import pl.zbadajsie.przychodnia.dto.PatientInfoDto;
 import pl.zbadajsie.przychodnia.dto.VisitDoctorDto;
+import pl.zbadajsie.przychodnia.dto.map.DoctorFullInfoDtoMapper;
 import pl.zbadajsie.przychodnia.dto.map.PatientDtoMapper;
 import pl.zbadajsie.przychodnia.dto.map.VisitDoctorDtoMapper;
+import pl.zbadajsie.przychodnia.model.Doctor;
 import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.model.User;
 import pl.zbadajsie.przychodnia.model.Visit;
@@ -25,6 +28,7 @@ public class DoctorService {
     private final PatientDtoMapper patientDtoMapper;
     private final UserRepository userRepository;
     private final VisitRepository visitRepository;
+    private final DoctorFullInfoDtoMapper doctorFullInfoDtoMapper;
 
 
     @Transactional
@@ -95,6 +99,7 @@ public class DoctorService {
         return count > 0;
     }
 
+    @Transactional
     public Optional<VisitDoctorDto> getVisitById(Long id) {
         Optional<Visit> byId = visitRepository.findById(id);
         if(byId.isEmpty()){
@@ -111,5 +116,13 @@ public class DoctorService {
                 .filter(person1 -> person1.getDoctor() == null)
                 .findFirst();
         return first.get();
+    }
+
+    @Transactional
+    public DoctorFullInfoDto getDoctorInfo() {
+        Person person = userService.getPerson();
+        User user = person.getUser();
+        Doctor doctor = person.getDoctor();
+        return doctorFullInfoDtoMapper.map(doctor,person,user);
     }
 }

@@ -5,20 +5,20 @@
 </head>
 <body>
 <div id="container">
-    <header th:insert="fragments3.html::header">Heder</header>
+    <header th:insert="fragments4.html::header">Heder</header>
     <div id="content">
         <div class="contentform">
             <h1>Informacje o mnie</h1>
-            <p th:text="${'Imie i nazwisko: ' + person.firstName + ' ' + person.lastName}">Jan Nowak</p>
-            <p th:text="${'Email: ' + person.email}">Email</p>
-            <p th:text="${'Nazwa urzytkownia: ' + person.userName}">Nazwa urzytkownika</p>
-        </div>
+            <p th:text="${'Imie i nazwisko: ' + doctor.firsName + ' ' + doctor.surName}">Jan Nowak</p>
+            <p th:text="${'Email: ' + doctor.email}">Email</p>
+            <p th:text="${'Nazwa urzytkownia: ' + doctor.userName}">Nazwa urzytkownika</p>
+            <p th:text="${'Opis: ' + doctor.description}">Opis</p>
         </div>
         <div class="contentform">
             <a th:href="@{/logout}">Wyloguj się</a>
         </div>
     </div>
-        <footer th:insert="~{fragments.html::footer}">Stopka</footer>
-    </div>
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
 </body>
 </html>

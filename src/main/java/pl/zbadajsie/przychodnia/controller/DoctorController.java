@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.zbadajsie.przychodnia.dto.*;
 import pl.zbadajsie.przychodnia.service.DoctorService;
 import pl.zbadajsie.przychodnia.service.VisitService;
@@ -143,5 +142,12 @@ public class DoctorController {
         }
         visitService.addPrescription(dto, id);
         return "redirect:" + id + "?added=true";
+    }
+
+    @GetMapping("/info")
+    public String getInfoDoctor(Model model){
+        DoctorFullInfoDto doctorInfoDto = doctorService.getDoctorInfo();
+        model.addAttribute("doctor", doctorInfoDto);
+        return "aboutMeDoctor";
     }
 }

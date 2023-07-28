@@ -27,7 +27,6 @@ public class VisitService {
     private final NoteDtoMapper noteDtoMapper;
     private final ReferralDtoMapper referralDtoMapper;
     private final PrescriptionDtoMapper prescriptionDtoMapper;
-    private final InfoFromVisitDtoMapper infoFromVisitDtoMapper;
 
     @Transactional
     public boolean freeDateTme(VisitDto dto) {
