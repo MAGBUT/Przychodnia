@@ -141,4 +141,17 @@ class DoctorControllerTest {
 
     }
 
+    @Test
+    void visitDoctorInfoTest(){
+        ExtendedModelMap model = new ExtendedModelMap();
+        Long id = 1L;
+
+        when(visitService.checkExist(id)).thenReturn(false);
+
+        String result = doctorController.visitDoctorInfo(id, model);
+
+        Assertions.assertEquals(model.getAttribute("notExist"),"Wizyta o id: " + id + " nie istnieje dla tego doktora ");
+        Assertions.assertEquals(result,"visitDoctorForm");
+    }
+
 }

@@ -66,6 +66,8 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mysql'
     testImplementation 'org.mockito:mockito-core:3.11.0'
+    testImplementation 'com.h2database:h2:2.2.220'
+
 
     // Integration tests
     // Ta zależność musi być przed wiremock standalone
