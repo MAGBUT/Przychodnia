@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/","/register","/registerForPatient","/registerForDoctor","/success",
-                        "/registerSuccess","/error","/images/**","/css/**").permitAll()
+                        "/registerSuccess","/error","/images/**","/css/**","/quiz/**").permitAll()
                 .requestMatchers("/patient/**").hasAnyAuthority("PATIENT","ADMIN")
                 .requestMatchers("/doctor/**").hasAnyAuthority("DOCTOR","ADMIN")
                 .requestMatchers("/homepage", "/visit/**", "/note/**").hasAnyAuthority("PATIENT", "DOCTOR","ADMIN")

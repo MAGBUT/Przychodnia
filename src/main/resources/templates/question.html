@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments::head"></head>
+<body>
+<div id="container">
+    <header th:insert="fragments.html::header">Heder</header>
+
+    <div id="content">
+        <div class="contentform">
+            <h1>Lista pytań</h1>
+            <div th:if="${questions}">
+                <table th:each="question : ${questions}">
+                    <tr>
+                        <th>Kategoria</th>
+                        <th>Pytanie</th>
+                        <th>Poziom</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${question.category}">question</td>
+                        <td th:text="${question.question}">category</td>
+                        <td th:text="${question.difficulty}">difficulty</td>
+                    </tr>
+                    <tr>
+                        <th>Odpowiedzi:</th>
+                    </tr>
+                    <tr th:each="answer : ${question.answers}">
+                             <span th:if="${answer.info}">
+                                 <td th:text="${answer.name}">Nazwa</td>
+                                 <td th:text="${answer.info}">Odpowiedz</td>
+                             </span>
+                    </tr>
+                    <tr>
+                        <th>Poniżej odpowiedz:</th>
+                    </tr>
+                    <tr th:each="answer : ${question.answers}">
+                             <span th:if="${answer.getCorrect()}">
+                                  <td>Poprawna odpowiedz:</td>
+                                 <td th:text="${answer.name}">Nazwa</td>
+                             </span>
+                    </tr>
+                    </tr>
+                </table>
+            </div>
+            <div th:unless="${questions}">
+                Brak pytań!
+            </div>
+        </div>
+    </div>
+
+    <footer th:insert="~{fragments.html::footer}">Stopka</footer>
+</div>
+</body>
+</html>

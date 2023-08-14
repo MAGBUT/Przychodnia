@@ -9,13 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.zbadajsie.przychodnia.PrzychodniaApplication;
 
-@Configuration
 public class SpringDocConfiguration {
     @Bean
     public GroupedOpenApi groupedOpenApi() {
         return GroupedOpenApi.builder()
                 .group("default")
-                .pathsToMatch("/**")
+                .pathsToMatch("/api")
                 .packagesToScan(PrzychodniaApplication.class.getPackageName())
                 .build();
     }
