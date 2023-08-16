@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.controller;
+package pl.zbadajsie.przychodnia.unite.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.validation.BindingResult;
+import pl.zbadajsie.przychodnia.controller.RegisterController;
 import pl.zbadajsie.przychodnia.dto.*;
 import pl.zbadajsie.przychodnia.service.PatientRegisterService;
 import pl.zbadajsie.przychodnia.service.DoctorRegisterService;

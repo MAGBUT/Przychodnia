@@ -15,6 +15,8 @@ import pl.zbadajsie.przychodnia.repository.AddressRepository;
 import pl.zbadajsie.przychodnia.repository.PersonRepository;
 import pl.zbadajsie.przychodnia.repository.UserRepository;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -46,5 +48,6 @@ public class PatientRegisterService {
     public boolean checkUserName(String userName) {
         return userRepository.findByUserName(userName) != null;
     }
+
 }
 

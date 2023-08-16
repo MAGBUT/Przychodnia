@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.dto.map;
+package pl.zbadajsie.przychodnia.unite.map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

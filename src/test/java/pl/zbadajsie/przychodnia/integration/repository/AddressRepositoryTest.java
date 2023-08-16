@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.repository;
+package pl.zbadajsie.przychodnia.integration.repository;
 
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.zbadajsie.przychodnia.model.Address;
+import pl.zbadajsie.przychodnia.repository.AddressRepository;
 
 import java.util.List;
 

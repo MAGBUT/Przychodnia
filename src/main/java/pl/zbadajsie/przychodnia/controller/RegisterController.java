@@ -21,18 +21,18 @@ public class RegisterController {
     private final DoctorRegisterService doctorRegisterService;
 
     @GetMapping("/register")
-    String register() {
+    public String register() {
         return "register";
     }
 
     @GetMapping("/registerForPatient")
-    String registerForPatient(Model model) {
+    public String registerForPatient(Model model) {
         model.addAttribute("user", new PatientRegistrationDto());
         return "registerForPatient";
     }
 
     @GetMapping("/registerForDoctor")
-    String registerForDoctor(Model model) {
+    public String registerForDoctor(Model model) {
         DoctorRegistrationDto doctorDto = new DoctorRegistrationDto();
         doctorDto.setSpecialization(doctorRegisterService.getAllSpecializations());
         model.addAttribute("user", doctorDto);
@@ -41,7 +41,7 @@ public class RegisterController {
 
 
     @PostMapping("/registerForPatient")
-    String registerForPatient(@Valid @ModelAttribute("user") PatientRegistrationDto dto, BindingResult bindingResult, Model model) {
+    public String registerForPatient(@Valid @ModelAttribute("user") PatientRegistrationDto dto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registerForPatient";
         }
@@ -77,7 +77,7 @@ public class RegisterController {
     }
 
     @GetMapping("/success")
-    String success() {
+    public String success() {
         return "registerSuccess";
     }
 }

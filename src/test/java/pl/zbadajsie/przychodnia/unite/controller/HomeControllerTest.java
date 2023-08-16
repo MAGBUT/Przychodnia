@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.controller;
+package pl.zbadajsie.przychodnia.unite.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.ui.ExtendedModelMap;
 import pl.zbadajsie.przychodnia.configuration.security.SecurityContextFacade;
+import pl.zbadajsie.przychodnia.controller.HomeController;
 import pl.zbadajsie.przychodnia.service.UserService;
 
 import static org.mockito.Mockito.mock;

@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.zbadajsie.przychodnia.dto.PatientInfoDto;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class DoctorControllerApi {
 
-    @GetMapping
+    @GetMapping("/get")
     public ResponseEntity<?> getAllPatient() {
         PatientInfoDto patientInfoDto = PatientInfoDto.builder()
                 .userName("userName")
                 .firstName("firstName")
                 .lastName("lastName")
-                .email("email")
+                .email("email@email.pl")
                 .build();
         return ResponseEntity.ok().body(patientInfoDto);
     }

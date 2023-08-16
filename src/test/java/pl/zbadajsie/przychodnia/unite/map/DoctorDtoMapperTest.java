@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.dto.map;
+package pl.zbadajsie.przychodnia.unite.map;
 
 
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
+import pl.zbadajsie.przychodnia.dto.map.DoctorDtoMapper;
 import pl.zbadajsie.przychodnia.model.Doctor;
 import pl.zbadajsie.przychodnia.model.Person;
 

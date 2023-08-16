@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.dto.map;
+package pl.zbadajsie.przychodnia.unite.map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
 import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
+import pl.zbadajsie.przychodnia.dto.map.UserDtoMapper;
 import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.model.Role;
 import pl.zbadajsie.przychodnia.model.User;

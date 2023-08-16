@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.controller;
+package pl.zbadajsie.przychodnia.unite.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
+import pl.zbadajsie.przychodnia.controller.DoctorController;
 import pl.zbadajsie.przychodnia.dto.*;
 import pl.zbadajsie.przychodnia.service.DoctorService;
 import pl.zbadajsie.przychodnia.service.VisitService;
