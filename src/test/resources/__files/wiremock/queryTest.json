@@ -1,0 +1,322 @@
+[
+  {
+    "id": 16,
+    "question": "Which command is used to create new directory?",
+    "description": null,
+    "answers": {
+      "answer_a": "dir",
+      "answer_b": "newdir",
+      "answer_c": "mkdir",
+      "answer_d": "cdir",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_c",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "Linux"
+      }
+    ],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 146,
+    "question": "Which HTML element defines the title of a document?",
+    "description": null,
+    "answers": {
+      "answer_a": "<title>",
+      "answer_b": "<head>",
+      "answer_c": "<meta>",
+      "answer_d": "<start>",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "true",
+      "answer_b_correct": "false",
+      "answer_c_correct": "false",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "HTML"
+      }
+    ],
+    "category": "",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 543,
+    "question": "What is cite tag in HTML5?",
+    "description": null,
+    "answers": {
+      "answer_a": "<cite title\"value\">Some Text Here</cite>",
+      "answer_b": "<cite title:\"value\">Some Text Here</cite>",
+      "answer_c": "<cite title=\"value\">Some Text Here</cite>",
+      "answer_d": null,
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "HTML"
+      }
+    ],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 67,
+    "question": "Include files must have the file extension \".inc\"",
+    "description": null,
+    "answers": {
+      "answer_a": "True",
+      "answer_b": "False",
+      "answer_c": null,
+      "answer_d": null,
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "true",
+      "answer_c_correct": "false",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_b",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "PHP"
+      }
+    ],
+    "category": "",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 148,
+    "question": "Which doctype is correct for HTML5?",
+    "description": null,
+    "answers": {
+      "answer_a": "<!DOCTYPE HTML5>",
+      "answer_b": "<!DOCTYPE HTML PUBLIC>",
+      "answer_c": "<!DOCTYPE html>",
+      "answer_d": "<HTML5>",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_c",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "HTML"
+      }
+    ],
+    "category": "",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 413,
+    "question": "How much character are allowed to create a  database name?",
+    "description": null,
+    "answers": {
+      "answer_a": "64",
+      "answer_b": "70",
+      "answer_c": "75",
+      "answer_d": "40",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "true",
+      "answer_b_correct": "false",
+      "answer_c_correct": "false",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "MySQL"
+      }
+    ],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 109,
+    "question": "How do I create PHP arrays in a HTML <form>?",
+    "description": null,
+    "answers": {
+      "answer_a": "< input name= MyArray[]/>",
+      "answer_b": "< input =\"MyArray[]\" />",
+      "answer_c": "< input name=\"MyArray[]\" />",
+      "answer_d": "< input MyArray[] />",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_c",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "PHP"
+      }
+    ],
+    "category": "",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 1007,
+    "question": "On which of the following systems can minikube be installed on? Select one.",
+    "description": null,
+    "answers": {
+      "answer_a": "Linux",
+      "answer_b": "Windows",
+      "answer_c": "macOS",
+      "answer_d": "All of the mentioned",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "false",
+      "answer_d_correct": "true",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": null,
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "Kubernetes"
+      }
+    ],
+    "category": "Docker",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 345,
+    "question": "Which type of database management system represents relations using tables?",
+    "description": null,
+    "answers": {
+      "answer_a": "Network DBMS",
+      "answer_b": "Hierachical DBMS",
+      "answer_c": "Relational DBMS",
+      "answer_d": "Object Oriented DBMS",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "MySQL"
+      }
+    ],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 564,
+    "question": "Which one of the following property scopes is not supported by PHP?",
+    "description": null,
+    "answers": {
+      "answer_a": "public",
+      "answer_b": "static",
+      "answer_c": "friendly",
+      "answer_d": "final",
+      "answer_e": null,
+      "answer_f": null
+    },
+    "multiple_correct_answers": "false",
+    "correct_answers": {
+      "answer_a_correct": "false",
+      "answer_b_correct": "false",
+      "answer_c_correct": "true",
+      "answer_d_correct": "false",
+      "answer_e_correct": "false",
+      "answer_f_correct": "false"
+    },
+    "correct_answer": "answer_a",
+    "explanation": null,
+    "tip": null,
+    "tags": [
+      {
+        "name": "PHP"
+      }
+    ],
+    "category": "Code",
+    "difficulty": "Medium"
+  }
+]

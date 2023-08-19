@@ -8,4 +8,5 @@ spring:
 
 api:
   quiz:
-    url: http://localhost:9999
+    host: http://localhost:9999
+

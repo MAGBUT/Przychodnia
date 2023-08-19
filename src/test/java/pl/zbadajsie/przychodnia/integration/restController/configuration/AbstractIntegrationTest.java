@@ -9,4 +9,5 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public abstract class AbstractIntegrationTest {
+
 }

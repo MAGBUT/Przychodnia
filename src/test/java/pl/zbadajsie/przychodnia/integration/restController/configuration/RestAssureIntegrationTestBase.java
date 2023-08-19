@@ -16,6 +16,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
+
 public class RestAssureIntegrationTestBase
         extends AbstractIntegrationTest
         implements ControllerTestSupport {
@@ -23,10 +24,12 @@ public class RestAssureIntegrationTestBase
     @LocalServerPort
     private int serverPort;
 
+
     protected static WireMockServer wireMockServer;
 
 
     @Autowired
+    @SuppressWarnings("unused")
     protected ObjectMapper objectMapper;
 
     @Override
@@ -34,20 +37,23 @@ public class RestAssureIntegrationTestBase
         return objectMapper;
     }
 
+
     @BeforeAll
     static void beforeAll() {
         wireMockServer = new WireMockServer(
                 wireMockConfig()
                         .port(9999)
-                        .extensions(new ResponseTemplateTransformer(false))
         );
         wireMockServer.start();
+
+
     }
 
     @AfterEach
     void afterEach() {
         wireMockServer.resetAll();
     }
+
     @AfterAll
     static void afterAll() {
         wireMockServer.stop();
@@ -55,6 +61,7 @@ public class RestAssureIntegrationTestBase
     }
 
     public RequestSpecification requestSpecification() {
+        System.out.println(serverPort);
         return RestAssured
                 .given()
                 .config(getConfig())

@@ -43,8 +43,8 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/","/register","/registerForPatient","/registerForDoctor","/success",
-                        "/registerSuccess","/error","/images/**","/css/**","/quiz/**","/api/registration/**").permitAll()
+                .requestMatchers("/**","/register","/registerForPatient","/registerForDoctor","/success",
+                        "/registerSuccess","/error","/images/**","/css/**","/quiz","/api/registration/**").permitAll()
                 .requestMatchers("/patient/**").hasAnyAuthority("PATIENT")
                 .requestMatchers("/doctor/**").hasAnyAuthority("DOCTOR")
                 .requestMatchers("/homepage", "/visit/**", "/note/**").hasAnyAuthority("PATIENT", "DOCTOR")

@@ -1,5 +1,5 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
 
 spring:
   datasource:
@@ -20,6 +20,9 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-
   security:
     enabled: true
+
+api:
+  quiz:
+    host: https://quizapi.io
