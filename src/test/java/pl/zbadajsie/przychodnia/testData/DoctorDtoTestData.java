@@ -7,9 +7,9 @@ import java.util.List;
 public class DoctorDtoTestData {
     public static DoctorRegistrationDto someDoctorDto1(){
         return DoctorRegistrationDto.builder()
-                .userName("userName1")
+                .userName("userName11")
                 .password("password1")
-                .email("email@email.pl1")
+                .email("email@email.pl11")
                 .description("description1")
                 .specialization(List.of("dentysta"))
                 .name("name1")
@@ -19,9 +19,9 @@ public class DoctorDtoTestData {
     }
     public static DoctorRegistrationDto someDoctorDto2(){
         return DoctorRegistrationDto.builder()
-                .userName("userName2")
+                .userName("userName22")
                 .password("password2")
-                .email("email@email.pl2")
+                .email("email@email.pl22")
                 .description("description2")
                 .specialization(List.of("dentysta"))
                 .name("name2")
@@ -31,9 +31,9 @@ public class DoctorDtoTestData {
     }
     public static DoctorRegistrationDto someDoctorDto3(){
         return DoctorRegistrationDto.builder()
-                .userName("userName3")
+                .userName("userName33")
                 .password("password3")
-                .email("email@email.pl3")
+                .email("email@email.pl33")
                 .description("description3")
                 .specialization(List.of("dentysta"))
                 .name("name3")

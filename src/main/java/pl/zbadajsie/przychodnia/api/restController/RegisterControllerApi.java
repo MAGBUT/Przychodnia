@@ -3,9 +3,11 @@ package pl.zbadajsie.przychodnia.api.restController;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
 import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 import pl.zbadajsie.przychodnia.service.DoctorRegisterService;
 import pl.zbadajsie.przychodnia.service.PatientRegisterService;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/registration")
+@RequestMapping("/api/open")
 @RequiredArgsConstructor
 public class RegisterControllerApi {
     private final PatientRegisterService patientRegisterService;
@@ -46,6 +48,34 @@ public class RegisterControllerApi {
             return ResponseEntity.badRequest().body(error);
         }
         patientRegisterService.register(dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("/registerForDoctor")
+    ResponseEntity<?> registerForDoctor(@Valid @RequestBody DoctorRegistrationDto dto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            List<String> errors = bindingResult.getAllErrors().stream()
+                    .map(error -> {
+                        if (error instanceof FieldError) {
+                            FieldError fieldError = (FieldError) error;
+                            return "Field '" + fieldError.getField() + "': " + error.getDefaultMessage();
+                        }
+                        return error.getDefaultMessage();
+                    })
+                    .collect(Collectors.toList());
+            return ResponseEntity.badRequest().body(errors);
+        }
+        boolean emailIsTake = doctorRegisterService.checkEmail(dto.getEmail());
+        boolean userNameIsTake = doctorRegisterService.checkUserName(dto.getUserName());
+        if (userNameIsTake || emailIsTake) {
+            List<String> error = new ArrayList<>();
+            if(userNameIsTake)
+                error.add("Użytkownik o takiej nazwie już isnieje");
+            if(emailIsTake)
+                error.add("Użytkownik o takim emailu juz isnieje");
+            return ResponseEntity.badRequest().body(error);
+        }
+        doctorRegisterService.register(dto);
         return ResponseEntity.ok().body(dto);
     }
 

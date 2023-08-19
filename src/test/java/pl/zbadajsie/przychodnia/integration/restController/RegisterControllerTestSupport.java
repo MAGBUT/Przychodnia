@@ -11,7 +11,7 @@ public interface RegisterControllerTestSupport {
     default DoctorRegistrationDto registerDoctor(final DoctorRegistrationDto doctorDto) {
         return requestSpecification()
                 .body(doctorDto)
-                .post("/api/registerForDoctor")
+                .post("/api/open/registerForDoctor")
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .and()
@@ -22,7 +22,7 @@ public interface RegisterControllerTestSupport {
     default PatientRegistrationDto registerPatient(final PatientRegistrationDto patientDto) {
         return requestSpecification()
                 .body(patientDto)
-                .post("/api/registration/registerForPatient")
+                .post("/api/open/registerForPatient")
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .and()

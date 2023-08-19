@@ -1,6 +1,7 @@
 package pl.zbadajsie.przychodnia.integration.restController;
 
 import org.junit.jupiter.api.Test;
+import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
 import pl.zbadajsie.przychodnia.integration.restController.configuration.RestAssureIntegrationTestBase;
 import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 
@@ -9,6 +10,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static pl.zbadajsie.przychodnia.testData.PatientDtoTestData.somePatientDto1;
 import static pl.zbadajsie.przychodnia.testData.PatientDtoTestData.somePatientDto2;
+import static pl.zbadajsie.przychodnia.testData.DoctorDtoTestData.someDoctorDto1;
+import static pl.zbadajsie.przychodnia.testData.DoctorDtoTestData.someDoctorDto2;
 
 public class RegistrationControllerRestAssuredIT
         extends RestAssureIntegrationTestBase
@@ -25,6 +28,20 @@ public class RegistrationControllerRestAssuredIT
 
         assertThat(patientRegistrationDto1Result.getUserName(), is(equalTo(patientRegistrationDto1.getUserName())));
         assertThat(patientRegistrationDto2Result.getEmail(), is(equalTo(patientRegistrationDto2.getEmail())));
+
+    }
+
+    @Test
+    void addNewPatientCorrectly() {
+        DoctorRegistrationDto doctorRegistrationDto1 = someDoctorDto1();
+        DoctorRegistrationDto doctorRegistrationDto2 = someDoctorDto2();
+
+
+        DoctorRegistrationDto doctorRegistrationDto1Result = registerDoctor(doctorRegistrationDto1);
+        DoctorRegistrationDto doctorRegistrationDto2Result = registerDoctor(doctorRegistrationDto2);
+
+        assertThat(doctorRegistrationDto1Result.getUserName(), is(equalTo(doctorRegistrationDto1.getUserName())));
+        assertThat(doctorRegistrationDto2Result.getEmail(), is(equalTo(doctorRegistrationDto2.getEmail())));
 
     }
 }

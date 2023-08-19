@@ -1,4 +1,4 @@
-package pl.zbadajsie.przychodnia.integration.api;
+package pl.zbadajsie.przychodnia.integration.externalApi;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.Test;
@@ -31,8 +31,6 @@ public class QuizControllerIT
     @Autowired
     MockMvc mockMvc;
 
-    //    @MockBean
-//    Model model;
     @Test
     public void testGetQuestion() throws Exception {
 
