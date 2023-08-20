@@ -8,6 +8,8 @@ import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
 public interface RegisterControllerTestSupport {
     RequestSpecification requestSpecification();
 
+
+
     default DoctorRegistrationDto registerDoctor(final DoctorRegistrationDto doctorDto) {
         return requestSpecification()
                 .body(doctorDto)

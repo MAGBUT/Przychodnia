@@ -1,6 +1,7 @@
 package pl.zbadajsie.przychodnia.integration.restController;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.test.context.support.WithMockUser;
 import pl.zbadajsie.przychodnia.dto.DoctorRegistrationDto;
 import pl.zbadajsie.przychodnia.integration.restController.configuration.RestAssureIntegrationTestBase;
 import pl.zbadajsie.przychodnia.dto.PatientRegistrationDto;
@@ -18,6 +19,7 @@ public class RegistrationControllerRestAssuredIT
         implements RegisterControllerTestSupport {
 
     @Test
+    @WithMockUser
     void addNewDoctorCorrectly() {
         PatientRegistrationDto patientRegistrationDto1 = somePatientDto1();
         PatientRegistrationDto patientRegistrationDto2 = somePatientDto2();
@@ -32,6 +34,7 @@ public class RegistrationControllerRestAssuredIT
     }
 
     @Test
+    @WithMockUser
     void addNewPatientCorrectly() {
         DoctorRegistrationDto doctorRegistrationDto1 = someDoctorDto1();
         DoctorRegistrationDto doctorRegistrationDto2 = someDoctorDto2();

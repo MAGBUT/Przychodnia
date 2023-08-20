@@ -37,6 +37,7 @@ dependencies {
     //db
     implementation 'org.flywaydb:flyway-core'
     implementation "org.flywaydb:flyway-mysql"
+    testImplementation 'junit:junit:4.13.1'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     // annotations

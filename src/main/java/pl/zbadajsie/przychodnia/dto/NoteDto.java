@@ -7,9 +7,9 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class NoteDto {
     private Integer id;
     @Size(min = 5,max = 50,message = "Tytułu musi mieć od 5 do 50 znaków")
