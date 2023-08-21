@@ -47,7 +47,7 @@ public class DoctorService {
     private Person getPersonFromVisit(Visit visit1) {
         Set<Person> person = visit1.getPerson();
         Optional<Person> first = person.stream()
-                .filter(person1 -> person1.getDoctor() != null)
+                .filter(person1 -> person1.getDoctor() == null)
                 .findFirst();
         return first.get();
     }

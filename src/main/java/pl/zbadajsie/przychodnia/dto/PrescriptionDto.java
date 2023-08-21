@@ -16,6 +16,6 @@ public class PrescriptionDto {
     private Integer id;
     @Size(min = 5,max = 50,message = "Tytułu musi mieć od 5 do 50 znaków")
     private String name;
-    @Size(min = 20, max = 500, message = "Opis musi mieć od 5 do 500 znaków")
+    @Size(min = 20, max = 500, message = "Opis musi mieć od 20 do 500 znaków")
     private String description;
 }

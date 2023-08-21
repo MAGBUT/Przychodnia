@@ -21,7 +21,7 @@ import java.util.Optional;
 public class PatientController {
     private final PatientService patientService;
     private final VisitService visitService;
-    private final UserService userService;
+
 
     @GetMapping("/about")
     public String aboutMe(Model model){

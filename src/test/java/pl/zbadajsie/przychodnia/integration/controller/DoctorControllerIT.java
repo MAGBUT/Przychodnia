@@ -228,5 +228,56 @@ public class DoctorControllerIT {
 
     }
 
+    @Test
+    @WithMockUser
+    void addReferralWrrong() throws Exception {
+        Long id = 1L;
+        ReferralDto dto = ReferralDto.builder().title("t").description("d").build();
+
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/doctor/referral/"+ id)
+                        .flashAttr("referral", dto)
+                        .with(csrf())
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("addReferral"));
+
+    }
+    @Test
+    @WithMockUser
+    void getInfoDoctor() throws Exception {
+        DoctorFullInfoDto dto = new DoctorFullInfoDto();
+
+        when(doctorService.getDoctorInfo()).thenReturn(dto);
+
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/doctor/info")
+                        .with(csrf())
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("doctor"))
+                .andExpect(MockMvcResultMatchers.view().name("aboutMeDoctor"));
+
+    }
+
+    @Test
+    @WithMockUser
+    void addReferral() throws Exception {
+        Long id = 1L;
+        ReferralDto dto = ReferralDto.builder().title("title").description("descriptionDescriptionDescription").build();
+
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/doctor/referral/"+ id)
+                        .flashAttr("referral", dto)
+                        .with(csrf())
+                )
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl(id + "?added=true"));
+
+    }
+
 
 }
