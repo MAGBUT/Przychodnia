@@ -6,12 +6,17 @@ import io.restassured.RestAssured;
 import io.restassured.config.ObjectMapperConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+
+import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
@@ -59,8 +64,15 @@ public class RestAssureIntegrationTestBase
 
     }
 
+
+    public RequestSpecification requestSpecificationAuthorization(String userName,String password){
+        return requestSpecification()
+                .auth().form(userName,password);
+    }
+
+
+
     public RequestSpecification requestSpecification() {
-        System.out.println(serverPort);
         return RestAssured
                 .given()
                 .config(getConfig())

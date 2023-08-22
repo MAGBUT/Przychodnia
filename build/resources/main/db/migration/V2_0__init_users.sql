@@ -5,7 +5,7 @@ CREATE TABLE clinic_user
     email     VARCHAR(32)   NOT NULL UNIQUE,
     password  VARCHAR(128)  NOT NULL,
     active    BOOLEAN       NOT NULL,
-    person_id INT           NOT NULL UNIQUE,
+    person_id INT           UNIQUE,
     PRIMARY KEY (user_id)           ,
 
     FOREIGN KEY (person_id) REFERENCES person (person_id)

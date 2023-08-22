@@ -14,7 +14,7 @@ import static pl.zbadajsie.przychodnia.testData.PatientDtoTestData.somePatientDt
 import static pl.zbadajsie.przychodnia.testData.DoctorDtoTestData.someDoctorDto1;
 import static pl.zbadajsie.przychodnia.testData.DoctorDtoTestData.someDoctorDto2;
 
-public class RegistrationControllerRestAssuredIT
+public class RegistrationControllerApiIT
         extends RestAssureIntegrationTestBase
         implements RegisterControllerTestSupport {
 
