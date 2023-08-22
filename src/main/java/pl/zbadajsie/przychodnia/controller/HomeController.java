@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.zbadajsie.przychodnia.configuration.security.SecurityContextFacade;
+import pl.zbadajsie.przychodnia.model.Person;
 import pl.zbadajsie.przychodnia.service.UserService;
 
 @Controller
@@ -25,11 +26,22 @@ public class HomeController {
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(required = false) String error, Model model){
+        User loggedInUser = securityContextFacade.getLoggedInUser();
+        if(loggedInUser != null){
+            String role = userServise.getRole(loggedInUser.getUsername());
+            if(role.equals("DOCTOR")){
+                return "redirect:doctor/homepage";
+            }else if(role.equals("PATIENT")){
+                return "redirect:patient/homepage";
+            }
+        }
         if (error != null) {
             model.addAttribute("wrongUsernameOrPassword", "Błęde hasło lub login!");
         }
         return "login";
     }
+
+
 
     @GetMapping("/homepage")
     public String homePageLogin(){

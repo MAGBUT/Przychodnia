@@ -37,6 +37,7 @@ class HomeControllerTest {
     @Test
     void loginPage() {
         ExtendedModelMap model = new ExtendedModelMap();
+        when(securityContextFacade.getLoggedInUser()).thenReturn(null);
 
         String result = homeController.loginPage("error", model);
 

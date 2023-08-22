@@ -50,16 +50,6 @@ public class HomeControllerIT {
                 .andExpect(MockMvcResultMatchers.view().name("index"));
     }
 
-//    @Test
-//    void loginPage() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .get("/login")
-//                        .param("error","yes")
-//                        .with(csrf()))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.model().attributeExists("wrongUsernameOrPassword"))
-//                .andExpect(MockMvcResultMatchers.view().name("login"));
-//    }
 
     @Test
     @WithMockUser

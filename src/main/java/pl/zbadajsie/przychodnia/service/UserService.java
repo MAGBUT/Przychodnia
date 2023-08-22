@@ -28,6 +28,8 @@ public class UserService {
         return role;
     }
 
+
+
     @Transactional
     public Person getPerson(){
         org.springframework.security.core.userdetails.User user = securityContextFacade.getLoggedInUser();
