@@ -112,7 +112,7 @@ class PatientControllerTest {
 
         String result = patientController.bookVisit(visit, binding, model);
 
-        Assertions.assertEquals(result, "redirect:visit?param=yes");
+        Assertions.assertEquals(result, "redirect:/patient/visit?param=yes");
     }
 
     @Test

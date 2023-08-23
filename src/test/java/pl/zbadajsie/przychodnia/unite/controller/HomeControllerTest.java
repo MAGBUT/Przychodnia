@@ -53,7 +53,7 @@ class HomeControllerTest {
 
         String result = homeController.homePageLogin();
 
-        Assertions.assertEquals(result, "redirect:doctor/homepage");
+        Assertions.assertEquals(result, "redirect:/doctor/homepage");
     }
 
     @Test
@@ -64,7 +64,7 @@ class HomeControllerTest {
 
         String result = homeController.homePageLogin();
 
-        Assertions.assertEquals(result, "redirect:patient/homepage");
+        Assertions.assertEquals(result, "redirect:/patient/homepage");
     }
 
     @Test
@@ -80,14 +80,14 @@ class HomeControllerTest {
     void homePagePatient() {
         String result = homeController.homePagePatient();
 
-        Assertions.assertEquals(result, "homePageForPatient");
+        Assertions.assertEquals(result, "homepageForPatient");
     }
 
     @Test
     void homePageDoctor() {
         String result = homeController.homePageDoctor();
 
-        Assertions.assertEquals(result, "homePageForDoctor");
+        Assertions.assertEquals(result, "homepageForDoctor");
     }
 
 }

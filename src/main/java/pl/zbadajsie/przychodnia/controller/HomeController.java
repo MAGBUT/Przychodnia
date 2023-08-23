@@ -30,9 +30,9 @@ public class HomeController {
         if(loggedInUser != null){
             String role = userServise.getRole(loggedInUser.getUsername());
             if(role.equals("DOCTOR")){
-                return "redirect:doctor/homepage";
+                return "redirect:/doctor/homepage";
             }else if(role.equals("PATIENT")){
-                return "redirect:patient/homepage";
+                return "redirect:/patient/homepage";
             }
         }
         if (error != null) {
@@ -49,9 +49,9 @@ public class HomeController {
         if(loggedInUser != null){
             String role = userServise.getRole(loggedInUser.getUsername());
             if(role.equals("DOCTOR")){
-                return "redirect:doctor/homepage";
+                return "redirect:/doctor/homepage";
             }else if(role.equals("PATIENT")){
-                return "redirect:patient/homepage";
+                return "redirect:/patient/homepage";
             }
         }
         return "login";
@@ -59,11 +59,11 @@ public class HomeController {
 
     @GetMapping("patient/homepage")
     public String homePagePatient(){
-        return "homePageForPatient";
+        return "homepageForPatient";
     }
 
     @GetMapping("doctor/homepage")
     public String homePageDoctor(){
-        return "homePageForDoctor";
+        return "homepageForDoctor";
     }
 }

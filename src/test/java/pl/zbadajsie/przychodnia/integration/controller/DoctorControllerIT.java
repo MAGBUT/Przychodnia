@@ -168,7 +168,7 @@ public class DoctorControllerIT {
                         .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("info"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/doctor/visit/" + id + "/info"));
 
     }
 
@@ -204,7 +204,7 @@ public class DoctorControllerIT {
                         .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("visit/1/info"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/doctor/visit/1/info"));
 
     }
 
@@ -275,7 +275,7 @@ public class DoctorControllerIT {
                         .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl(id + "?added=true"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/doctor/referral/" +id + "?added=true"));
 
     }
 

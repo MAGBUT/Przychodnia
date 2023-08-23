@@ -65,7 +65,7 @@ public class PatientController {
             return "bookVisit";
         }
         visitService.bookVisit(dto);
-        return "redirect:visit?param=yes";
+        return "redirect:/patient/visit?param=yes";
 
     }
 

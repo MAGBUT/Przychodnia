@@ -105,7 +105,7 @@ public class RegisterControllerTest {
 
         String result = registerController.registerForPatient(patient,binding,model);
 
-        Assertions.assertEquals(result,"redirect:success");
+        Assertions.assertEquals(result,"redirect:/success");
     }
 
     @Test

@@ -55,7 +55,7 @@ public class RegisterController {
             return "registerForPatient";
         }
         patientRegisterService.register(dto);
-        return "redirect:success";
+        return "redirect:/success";
     }
 
     @PostMapping("/registerForDoctor")
@@ -73,7 +73,7 @@ public class RegisterController {
             return "registerForDoctor";
         }
         doctorRegisterService.register(dto);
-        return "redirect:success";
+        return "redirect:/success";
     }
 
     @GetMapping("/success")

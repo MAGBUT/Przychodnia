@@ -61,7 +61,7 @@ public class HomeControllerIT {
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/homepage"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("patient/homepage"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/patient/homepage"));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class HomeControllerIT {
                         .get("/patient/homepage")
                         .with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("homePageForPatient"));
+                .andExpect(MockMvcResultMatchers.view().name("homepageForPatient"));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class HomeControllerIT {
                         .get("/doctor/homepage")
                         .with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("homePageForDoctor"));
+                .andExpect(MockMvcResultMatchers.view().name("homepageForDoctor"));
     }
 }

@@ -81,14 +81,14 @@ public class DoctorController {
             return "visitDoctorForm";
         }
         visitService.addNote(noteDto, id);
-        return "redirect:info";
+        return "redirect:/doctor/visit/" + id + "/info";
     }
 
     @PostMapping("accept")
     public String accept(@ModelAttribute("visit") VisitDoctorDto dto) {
         visitService.accept(dto);
         int id = dto.getId();
-        return "redirect:visit/" + id + "/info";
+        return "redirect:/doctor/visit/" + id + "/info";
     }
 
     @GetMapping("/referral/{id}")
@@ -115,7 +115,7 @@ public class DoctorController {
         }
 
         visitService.addReferral(dto, id);
-        return "redirect:" + id + "?added=true";
+        return "redirect:/doctor/referral/" + id + "?added=true";
     }
 
     @GetMapping("/prescription/{id}")
@@ -141,7 +141,7 @@ public class DoctorController {
             return "addPrescription";
         }
         visitService.addPrescription(dto, id);
-        return "redirect:" + id + "?added=true";
+        return "redirect:/doctor/prescription/" + id + "?added=true";
     }
 
     @GetMapping("/info")

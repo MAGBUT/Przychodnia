@@ -122,7 +122,7 @@ public class RegisterControllerIT {
                         .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("success"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/success"));
 
     }
 
@@ -139,7 +139,7 @@ public class RegisterControllerIT {
                         .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("success"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/success"));
 
     }
 
